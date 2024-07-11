@@ -5,8 +5,10 @@ module.exports = {
     extend: {
       colors: {
         primary: "#161622",
+        input: "#EEEEEE",
+        Font: "#515151",
         secondary: {
-          DEFAULT: "#FF9C01",
+          DEFAULT: "#0D4641",
           100: "#FF9001",
           200: "#FF8E01",
         },
