@@ -1,13 +1,13 @@
 import { View, Image, ImageBackground, ActivityIndicator, Text, TouchableOpacity, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import {images} from'../constants'
-import { Redirect, router, useLocalSearchParams } from 'expo-router';
+import { router} from 'expo-router';
 const Start = () => { 
   useEffect(() => {
     const setTimeOneTime=()=>{
-    router.replace('/welcome')
+    router.replace('/sign-up')
   }
-  const myInterval = setInterval(setTimeOneTime, 1000);
+  const myInterval = setInterval(setTimeOneTime, 2000);
       return () => clearInterval(myInterval); 
     }, [])
     
