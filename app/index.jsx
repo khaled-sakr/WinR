@@ -5,9 +5,9 @@ import { router} from 'expo-router';
 const Start = () => { 
   useEffect(() => {
     const setTimeOneTime=()=>{
-    router.replace('/sign-up')
+    router.replace('/(tabs)/home')
   }
-  const myInterval = setInterval(setTimeOneTime, 2000);
+  const myInterval = setInterval(setTimeOneTime, 1000);
       return () => clearInterval(myInterval); 
     }, [])
     

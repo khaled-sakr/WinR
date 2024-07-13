@@ -2,13 +2,14 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const Search = () => {
+const Men = () => {
   return (
     <SafeAreaView>
-      <Text>Search</Text>
+      <Text>Men</Text>
     </SafeAreaView>
   )
 }
 
-export default Search
+export default Men
 
+const styles = StyleSheet.create({})

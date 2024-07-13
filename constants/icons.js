@@ -11,6 +11,15 @@ import logout from "../assets/icons/logout.png";
 import eyeHide from "../assets/icons/eye-hide.png";
 import eye from "../assets/icons/eye.png";
 import play from "../assets/icons/play.png";
+import cart from "../assets/icons/cart.png";
+import favourite from "../assets/icons/favourite.png";
+import winr from "../assets/icons/winr.png";
+import men from "../assets/icons/men.png";
+import women from "../assets/icons/women.png";
+import children from "../assets/icons/children.png";
+import back from "../assets/icons/back.png";
+import chat from "../assets/icons/chat.png";
+import categories from "../assets/icons/categories.png";
 
 export default {
   play,
@@ -26,4 +35,12 @@ export default {
   logout,
   eyeHide,
   eye,
+  cart,
+  favourite,
+  winr,
+  men,
+  women,
+  children,
+  back,
+  chat,categories
 };

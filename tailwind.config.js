@@ -7,6 +7,7 @@ module.exports = {
         primary: "#161622",
         input: "#EEEEEE",
         Font: "#515151",
+        third: "#6A6A6A",
         secondary: {
           DEFAULT: "#0D4641",
           100: "#FF9001",

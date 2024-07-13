@@ -37,11 +37,11 @@ const RootLayout = () => {
 
   return (
       <Stack>
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} /> 
         <Stack.Screen name="welcome" options={{ headerShown: false }} /> 
-        <Stack.Screen name="cart" options={{ headerShown: false }} /> 
         <Stack.Screen name="favourite" options={{ headerShown: false }} /> 
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(cart)" options={{ headerShown: false }} /> 
         <Stack.Screen name="(account)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(home)" options={{ headerShown: false }} />

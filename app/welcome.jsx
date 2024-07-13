@@ -11,7 +11,7 @@ const Welcome = () => {
       <View className='mt-64'>
         <Text className='text-slate-100 text-2xl font-[600] text-center'>Welcome to W in T store</Text>
       <Text className='text-slate-100 my-3 font-[100] text-center'>Fashion store for all you needs</Text>
-      <TouchableOpacity activeOpacity={0.6}  onPress={()=>router.push('sign-up')} className='bg-slate-500/60 rounded-3xl px-5 py-3 w-6/12 mx-auto mt-20'>
+      <TouchableOpacity activeOpacity={0.6}  onPress={()=>router.replace('sign-up')} className='bg-slate-500/60 rounded-3xl px-5 py-3 w-6/12 mx-auto mt-20'>
         <Text className='text-slate-100 text-sm font-[100] text-center'>Get Started</Text>
       </TouchableOpacity>
         </View>
