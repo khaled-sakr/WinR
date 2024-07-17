@@ -20,10 +20,44 @@ import featureImg2 from "../assets/images/featureImg2.png";
 import featureImg3 from "../assets/images/featureImg3.png";
 import featureImg4 from "../assets/images/featureImg4.png";
 import sells from "../assets/images/sells.png";
-// import image3 from "../assets/images/image3.png";
-// import logoSmall from "../assets/images/logo-small.png";
-// import empty from "../assets/images/empty.png";
+import shirt from "../assets/images/shirt.png";
+import tshirt from "../assets/images/t-shirt.png";
+import sweatshirt from "../assets/images/sweatshirt.png";
+import sport from "../assets/images/sport.png";
+import swimming from "../assets/images/swimming.png";
+import fashion from "../assets/images/fashion.png";
+import menPro1 from "../assets/images/menPro1.png";
+import menPro2 from "../assets/images/menPro2.png";
+import menPro3 from "../assets/images/menPro3.png";
+import menPro4 from "../assets/images/menPro4.png";
+import menCurd1 from "../assets/images/menCurd1.png";
+import menCurd2 from "../assets/images/menCurd2.png";
+import ProdCurdWithDet1 from "../assets/images/ProdCurdWithDet1.png";
+import ProdCurdWithDet2 from "../assets/images/ProdCurdWithDet2.png";
+import ProdCurdWithDet3 from "../assets/images/ProdCurdWithDet3.png";
+import ProdCurdWithDet4 from "../assets/images/ProdCurdWithDet4.png";
+import ProdCurdWithDet5 from "../assets/images/ProdCurdWithDet5.png";
+import ProdCurdWithDet6 from "../assets/images/ProdCurdWithDet6.png";
+import ProdCurdWithDet7 from "../assets/images/ProdCurdWithDet7.png";
+import ProdCurdWithDet8 from "../assets/images/ProdCurdWithDet8.png";
+import scrolHorWomen1 from "../assets/images/scrolHorWomen1.png";
+import scrolHorWomen2 from "../assets/images/scrolHorWomen2.png";
+import scrolHorWomen3 from "../assets/images/scrolHorWomen3.png";
+import scrolHorWomen4 from "../assets/images/scrolHorWomen4.png";
+import scrolHorWomen5 from "../assets/images/scrolHorWomen5.png";
 
+import scrolWomenMain1 from "../assets/images/scrolWomenMain1.png";
+import scrolWomenMain2 from "../assets/images/scrolWomenMain2.png";
+import scrolWomenMain3 from "../assets/images/scrolWomenMain3.png";
+import scrolWomenMain4 from "../assets/images/scrolWomenMain4.png";
+import imgWomenCurd1 from "../assets/images/imgWomenCurd1.png";
+import imgWomenCurd2 from "../assets/images/imgWomenCurd2.png";
+import imgWomenCurd3 from "../assets/images/imgWomenCurd3.png";
+import productImg from "../assets/images/productImg.png";
+import prodAddImg from "../assets/images/prodAddImg.png";
+import mencategory from "../assets/images/mencategory.png";
+import womencategory from "../assets/images/mencategory.png";
+import childrencategory from "../assets/images/childrencategory.png";
 export default { 
     // profile, thumbnail,
      welcome,
@@ -44,5 +78,42 @@ export default {
    featureImg2,
    featureImg3,
    featureImg4,
-   sells //    logoSmall, empty
+   menPro1,
+   menPro2,
+   menPro3,
+   menPro4,
+   sells,
+   shirt,
+   tshirt,
+   sweatshirt,
+   sport,
+   swimming,
+   fashion,
+   menCurd1,
+   menCurd2,
+   ProdCurdWithDet1,
+   ProdCurdWithDet2,
+   ProdCurdWithDet3,
+   ProdCurdWithDet4,
+   ProdCurdWithDet5,
+   ProdCurdWithDet6,
+   ProdCurdWithDet7,
+   ProdCurdWithDet8, 
+   scrolHorWomen1,
+   scrolHorWomen2,
+   scrolHorWomen3,
+   scrolHorWomen4,
+   scrolHorWomen5,
+   scrolWomenMain1,
+   scrolWomenMain2,
+   scrolWomenMain3,
+   scrolWomenMain4,
+   imgWomenCurd1,
+   imgWomenCurd2,
+   imgWomenCurd3,
+   productImg,
+   prodAddImg,
+   mencategory,
+womencategory,
+childrencategory,
  };

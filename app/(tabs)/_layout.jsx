@@ -22,7 +22,6 @@ const TabIcon = ({ icon, color, name, focused }) => {
 };
 
 const Tabslayout = () => {
-  
   return (
     <Tabs
     screenOptions={{
@@ -32,8 +31,7 @@ const Tabslayout = () => {
       tabBarStyle: {
         backgroundColor: "#F2F4F7",
         borderTopWidth: 1,
-        // borderTopColor: "#F2F4F7",
-        height: 84,
+        height: 80,
       },
     }}
   >
@@ -52,22 +50,6 @@ const Tabslayout = () => {
             ),
           }}
         />
-        {/* <Tabs.Screen
-          name="favourite"
-          options={{
-            title: "Favourite",
-            headerShown: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                icon={icons.favourite}
-                color={color}
-                name="favourite"
-                focused={focused}
-              />
-            ),
-          }}
-        /> */}
-
         <Tabs.Screen
           name="cart"
           options={{
@@ -84,7 +66,7 @@ const Tabslayout = () => {
           }}
         />
            <Tabs.Screen
-          name="categories"
+          name="categoriesStation"
           options={{
             title: "Categories",
             headerShown: false,
@@ -113,6 +95,33 @@ const Tabslayout = () => {
             ),
           }}
         />
+          <Tabs.Screen
+                  name="categories/[category]"
+                  options={{
+                    headerShown: false,
+                    tabBarItemStyle: {
+                      display: 'none',
+                    },
+                  }}
+          />
+          <Tabs.Screen
+                  name="products/[product]"
+                  options={{
+                    headerShown: false,
+                    tabBarItemStyle: {
+                      display: 'none',
+                    },
+                  }}
+          />
+          <Tabs.Screen
+                  name="(section)"
+                  options={{
+                    headerShown: false,
+                    tabBarItemStyle: {
+                      display: 'none',
+                    },
+                  }}
+          />
   </Tabs>
   )
 }

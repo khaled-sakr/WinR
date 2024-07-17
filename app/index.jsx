@@ -5,9 +5,13 @@ import { router} from 'expo-router';
 const Start = () => { 
   useEffect(() => {
     const setTimeOneTime=()=>{
-    router.replace('/(tabs)/home')
+    // router.replace('men')
+    // router.replace('/sign-up')
+    router.replace('home')
+    // router.replace('/sign-up')
   }
   const myInterval = setInterval(setTimeOneTime, 1000);
+  // const myInterval = setInterval(setTimeOneTime, 3000);
       return () => clearInterval(myInterval); 
     }, [])
     

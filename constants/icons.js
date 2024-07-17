@@ -13,6 +13,7 @@ import eye from "../assets/icons/eye.png";
 import play from "../assets/icons/play.png";
 import cart from "../assets/icons/cart.png";
 import favourite from "../assets/icons/favourite.png";
+import favouriteFull from "../assets/icons/favouriteFull.png";
 import winr from "../assets/icons/winr.png";
 import men from "../assets/icons/men.png";
 import women from "../assets/icons/women.png";
@@ -20,6 +21,9 @@ import children from "../assets/icons/children.png";
 import back from "../assets/icons/back.png";
 import chat from "../assets/icons/chat.png";
 import categories from "../assets/icons/categories.png";
+import AddShopping from "../assets/icons/AddShopping.png";
+import star from "../assets/icons/star.png";
+import starHalf from "../assets/icons/starHalf.png";
 
 export default {
   play,
@@ -37,10 +41,15 @@ export default {
   eye,
   cart,
   favourite,
+  favouriteFull,
   winr,
   men,
   women,
   children,
   back,
-  chat,categories
+  chat,
+  categories,
+  AddShopping,
+  star,
+  starHalf
 };

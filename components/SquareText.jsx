@@ -3,7 +3,7 @@ import React from 'react'
 
 const SquareText = ({title , addstyle}) => {
   return (
-      <Text className={`h-[40px] w-[95px] rounded-[5px] text-center font-bold  py-2.5 ${addstyle}`}>{title}</Text>
+      <Text className={`rounded-[5px] text-center font-bold  py-2.5 ${addstyle}`}>{title}</Text>
   )
 }
 

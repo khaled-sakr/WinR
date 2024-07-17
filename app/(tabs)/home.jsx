@@ -9,6 +9,7 @@ import ScrolImg from '../../components/ScrolImg'
 import { Link } from 'expo-router'
 import SquareText from '../../components/SquareText'
 import FeatureScrol from '../../components/FeatureScrol'
+import BoldTitle from '../../components/BoldTitle'
 const ImgOfScrol=[{
   title:'Fashion Men',
   src:images.scrolImg1
@@ -49,38 +50,41 @@ const Home = () => {
     <HeadTitle srcIconLeft={icons.chat} srcIconRight={icons.favourite} srcIconMiddle={icons.winr}/>
     <SearchBar/>
     <View className='w-11/12 h-fit mt-6 flex-row flex justify-between mx-auto '>
-     <Link href='/men'><CustomIcon srcImage={images.men} title='men'/></Link>
-      <Link href='/women'><CustomIcon srcImage={images.women} title='women'/></Link>
-      <Link href='/children'><CustomIcon srcImage={images.children} title='children'/></Link>
+     <Link href='/men'><CustomIcon src={images.men} title='men'/></Link>
+      <Link href='/women'><CustomIcon src={images.women} title='women'/></Link>
+      <Link href='/children'><CustomIcon src={images.children} title='children'/></Link>
     </View>
-    <View className=' w-11/12 mx-auto mt-8 rounded-xl relative'>
+    <View className='w-11/12 mx-auto mt-8 rounded-xl relative'>
     <FlatList 
     data={ImgOfScrol}
      horizontal 
+     showsHorizontalScrollIndicator={false}
      pagingEnabled
+     keyExtractor={item => item.src}
      renderItem={({item})=>
      <ScrolImg src={item.src} title={item.title}/>
     }/>
     </View>
-    <Text className='mx-auto text-2xl font-bold mt-6 w-11/12 text-secondary'>Your Common Brands</Text>
-    <View className='w-11/12 mx-auto mt-6 flex-row justify-between '>
-      <SquareText title='NIKE' addstyle='text-Font text-third bg-[#DFDFDF] '/>
-      <SquareText title='ZARA' addstyle='text-Font text-third bg-[#DFDFDF] '/>
-      <SquareText title='H&M' addstyle='text-Font text-third bg-[#DFDFDF] '/>
+    <BoldTitle title='Your Common Brands' addStyle='w-11/12 mt-8 mx-auto'/>
+    <View className='w-11/12 mx-auto flex-row justify-between '>
+      <SquareText title='NIKE' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
+      <SquareText title='ZARA' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
+      <SquareText title='H&M' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
     </View>
     <View className='w-11/12 mx-auto mt-4 flex-row justify-between '>
-      <SquareText title='BERSHKA' addstyle='text-Font text-third bg-[#DFDFDF] '/>
-      <SquareText title='ADIDAS' addstyle='text-Font text-third bg-[#DFDFDF] '/>
-      <SquareText title='GUCCA' addstyle='text-Font text-third bg-[#DFDFDF] '/>
+      <SquareText title='BERSHKA' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
+      <SquareText title='ADIDAS' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
+      <SquareText title='GUCCA' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
     </View>
 
-    <Text className='mx-auto text-2xl font-bold my-8 w-11/12 text-secondary'>Feature Products</Text>
+    <BoldTitle title='Feature Products' addStyle='w-11/12 mt-8 mx-auto'/>
 
     <View className='w-11/12 mx-auto'>
     <FlatList 
     data={FeatureImg}
      horizontal 
      pagingEnabled={false}
+     showsHorizontalScrollIndicator={false}
      renderItem={({item})=>
      <FeatureScrol src={item.src} title={item.title} price={item.price}/>
     }/>

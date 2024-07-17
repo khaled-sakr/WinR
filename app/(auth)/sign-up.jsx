@@ -5,6 +5,7 @@ import CustomButton from '../../components/CustomButton'
 import { images } from '../../constants'
 import { Link, router } from 'expo-router'
 import { useState } from 'react'
+import TitleWithLine from '../../components/TitleWithLine'
 const defaultValues={firstname: "",
 lastname: "",
 email: "",
@@ -52,12 +53,7 @@ const signUp = () => {
       <InputForm handleChangeText={(value) => handleChange('confirmPasssword', value)} value={form.confirmPasssword} name='confirmPassword' title='Confirm Password'  placeholder='**********' type='normal' size='full' addclass='' error={errors?.includes("The confirm is required") ? "The confirm is required" : '' || errors.includes("This confirm must be equal the password") ? "This confirm must be equal the password" : ''}  />
     
       <CustomButton onPress={handleSubmit} title='Create Account' size='large' type='startButtoms' addStyle='mt-10'/>
-    <View className='flex relative mx-auto flex-row my-4'>
-
-      <View className=' h-[2px] bg-slate-400 w-1/12 mt-4' />
-    <Text className='text-center text-Font text-xl w-1/12'>OR</Text>
-  <View className='h-[2px] bg-slate-400 w-1/12 mt-4'/> 
-    </View>
+      <TitleWithLine title='OR' size='w-3/12' addStyle='font-bold'/>
           <View className='flex flex-row w-8/12 mx-auto mt-3 justify-between'>
     <View className='border border-slate-300 rounded-full p-3'>
       <Image source={images.facebook} className=''/>
