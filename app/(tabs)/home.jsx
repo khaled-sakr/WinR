@@ -65,7 +65,7 @@ const Home = () => {
      <ScrolImg src={item.src} title={item.title}/>
     }/>
     </View>
-    <BoldTitle title='Your Common Brands' addStyle='w-11/12 mt-8 mx-auto'/>
+    <BoldTitle title='Your Common Brands' addStyle='w-11/12 mt-8 mb-4 mx-auto'/>
     <View className='w-11/12 mx-auto flex-row justify-between '>
       <SquareText title='NIKE' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
       <SquareText title='ZARA' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
@@ -77,7 +77,7 @@ const Home = () => {
       <SquareText title='GUCCA' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
     </View>
 
-    <BoldTitle title='Feature Products' addStyle='w-11/12 mt-8 mx-auto'/>
+    <BoldTitle title='Feature Products' addStyle='w-11/12 mt-8 mb-4 mx-auto'/>
 
     <View className='w-11/12 mx-auto'>
     <FlatList 
@@ -90,10 +90,10 @@ const Home = () => {
     }/>
     </View>
     <Text className='mx-auto text-2xl font-bold mt-8 mb-2 w-11/12 text-secondary'>Sells</Text>
-<View className='w-11/12 mx-auto bg-red-300 relative rounded-2xl mb-2'>
-  <Image source={images.sells} className='w-full'/>
-  <Text className='text-6xl font-semibold text-white absolute top-16 right-5'>20% TO 70%</Text>
-</View>
+    <View className='w-11/12 mx-auto bg-red-300 relative rounded-2xl mb-2'>
+      <Image source={images.sells} className='w-full'/>
+      <Text className='text-6xl font-semibold text-white absolute top-16 right-5'>20% TO 70%</Text>
+    </View>
    </SafeAreaView>
    </ScrollView>
   )
