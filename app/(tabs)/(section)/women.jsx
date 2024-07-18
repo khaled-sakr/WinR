@@ -63,8 +63,8 @@ const womenPro=[{
 ]
 const Women = () => {
   return (
-    <ScrollView >
     <SafeAreaView>
+      <ScrollView >
     <HeadTitle srcIconLeft={icons.chat} srcIconRight={icons.favourite} srcIconMiddle={icons.women}/>
   <SearchBar/>
   <TitleWithLine title='SHOP ALL CATEGORIES' addStyle='font-[300]' size='w-full'/>
@@ -100,8 +100,8 @@ const Women = () => {
     <ProductCurd blur={5} src={images.imgWomenCurd3} title='SHEMIZ' price={600} discount={25}/>
       </View>
 
-    </SafeAreaView>
     </ScrollView>
+  </SafeAreaView>
   )
 }
 

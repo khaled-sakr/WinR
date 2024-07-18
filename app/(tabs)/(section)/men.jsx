@@ -34,8 +34,8 @@ const menPro=[{
 
 const Men = () => {
   return (
-    <ScrollView >
     <SafeAreaView>
+      <ScrollView >
   <HeadTitle srcIconLeft={icons.chat} srcIconRight={icons.favourite} srcIconMiddle={icons.men}/>
   <SearchBar/>
   <TitleWithLine title='SHOP ALL CATEGORIES' addStyle='font-[300]' size='w-full'/>
@@ -69,8 +69,8 @@ const Men = () => {
       <ProductCurd src={images.menCurd1} title='PRINTED SHIRT' price={300} discount={20}/>
     <ProductCurd src={images.menCurd2} title='SHEMIZ' price={500} discount={20}/>
       </View>
-    </SafeAreaView>
     </ScrollView>
+    </SafeAreaView>
   )
 }
 

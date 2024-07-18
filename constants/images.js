@@ -56,7 +56,7 @@ import imgWomenCurd3 from "../assets/images/imgWomenCurd3.png";
 import productImg from "../assets/images/productImg.png";
 import prodAddImg from "../assets/images/prodAddImg.png";
 import mencategory from "../assets/images/mencategory.png";
-import womencategory from "../assets/images/mencategory.png";
+import womencategory from "../assets/images/womencategory.png";
 import childrencategory from "../assets/images/childrencategory.png";
 export default { 
     // profile, thumbnail,

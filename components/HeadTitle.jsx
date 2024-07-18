@@ -6,10 +6,10 @@ import { icons } from '../constants'
 const HeadTitle = ({srcIconRight,srcIconMiddle,srcIconLeft}) => {
   return (
     <View className='flex-row mx-auto mt-2 justify-between w-11/12 h-[50] '>
-      {srcIconLeft && <TouchableOpacity activeOpacity={0.8} onPress={() => {(srcIconLeft === icons.back ) && router.back()}}>
+      {srcIconLeft ? <TouchableOpacity activeOpacity={0.8} onPress={() => {(srcIconLeft === icons.back ) && router.back()} }>
         <Image source={srcIconLeft} className='mt-3'/>
         </TouchableOpacity>
-        }
+         : <View/>}
       {srcIconMiddle && <Image source={srcIconMiddle} className='mt-3 '/>}
       {srcIconRight && <TouchableOpacity className='mt-2' onPress={() => router.push('/favourite')}>
       <Image source={srcIconRight}/>

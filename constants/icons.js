@@ -24,6 +24,7 @@ import categories from "../assets/icons/categories.png";
 import AddShopping from "../assets/icons/AddShopping.png";
 import star from "../assets/icons/star.png";
 import starHalf from "../assets/icons/starHalf.png";
+import backarrow from "../assets/icons/backarrow.png";
 
 export default {
   play,
@@ -51,5 +52,6 @@ export default {
   categories,
   AddShopping,
   star,
-  starHalf
+  starHalf,
+  backarrow
 };

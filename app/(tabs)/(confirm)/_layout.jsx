@@ -6,9 +6,8 @@ const CartLayout = () => {
   return (
     <>
     <Stack>
-    <Stack.Screen name="cart" options={{headerShown:false}}/>
-    <Stack.Screen name="checkout" options={{headerShown:false}}/>      
     <Stack.Screen name="confirm" options={{headerShown:false}}/>      
+    <Stack.Screen name="checkout" options={{headerShown:false}}/>      
     </Stack>
     <StatusBar backgroundColor="#ffffff" style="light"/>
     </>

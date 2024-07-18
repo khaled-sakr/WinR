@@ -11,8 +11,8 @@ import ProductCurdWithDet from '../../../components/ProductCurdWithDet'
 
 const Children = () => {
   return (
+    <SafeAreaView>
     <ScrollView >
-      <SafeAreaView>
       <HeadTitle srcIconLeft={icons.chat} srcIconRight={icons.favourite} srcIconMiddle={icons.men}/>
       <SearchBar/>
       <TitleWithLine title='SHOP ALL CATEGORIES' addStyle='font-[300]' size='w-full'/>
@@ -43,8 +43,8 @@ const Children = () => {
       <ProductCurdWithDet src={images.ProdCurdWithDet7}/>
       <ProductCurdWithDet src={images.ProdCurdWithDet8}/>
       </View>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 

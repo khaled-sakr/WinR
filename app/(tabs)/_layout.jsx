@@ -31,7 +31,7 @@ const Tabslayout = () => {
       tabBarStyle: {
         backgroundColor: "#F2F4F7",
         borderTopWidth: 1,
-        height: 80,
+        height: 90,
       },
     }}
   >
@@ -113,6 +113,15 @@ const Tabslayout = () => {
                     },
                   }}
           />
+                 <Tabs.Screen
+                          name="(confirm)"
+                          options={{
+                            headerShown: false,
+                            tabBarItemStyle: {
+                              display: 'none',
+                            },
+                          }}
+                  />
           <Tabs.Screen
                   name="(section)"
                   options={{

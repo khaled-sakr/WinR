@@ -12,9 +12,9 @@ const CategoriesStation = () => {
     <ScrollView>
     <HeadTitle  srcIconRight={icons.favourite} srcIconMiddle={icons.men}/>
   <SearchBar/>
-      <CategoryCurd src={images.mencategory}/>
-      <CategoryCurd src={images.womencategory}/>
-      <CategoryCurd src={images.childrencategory}/>
+      <CategoryCurd src={images.mencategory} title='Fashion Men'/>
+      <CategoryCurd src={images.womencategory} title='Fashion Women'/>
+      <CategoryCurd src={images.childrencategory} title='Fashion children'/>
     </ScrollView>
     </SafeAreaView>
   )

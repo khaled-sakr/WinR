@@ -14,33 +14,33 @@ const Category = () => {
   const { category } = useLocalSearchParams();
   return (
     <>
-    <ScrollView>
     <SafeAreaView>
+    <ScrollView>
   <HeadTitle srcIconLeft={icons.back} srcIconRight={icons.favourite} srcIconMiddle={icons.men}/>
   <SearchBar/>
-  <FlatList className='w-11/12 mx-auto mt-4' data={scrolCategories} horizontal renderItem={({item})=>(
+  <FlatList className='w-11/12 mx-auto mt-4' data={scrolCategories} horizontal showsHorizontalScrollIndicator={false} renderItem={({item})=>(
     <TouchableOpacity activeOpacity={0.7} onPress={()=>router.push(`/categories/${item.link}`)} className='mr-2'>
     <SquareText title={item.title}  addstyle='text-Font bg-secondary text-white h-[40px] w-[106px] rounded-[2px]'/>
     </TouchableOpacity>
   )}/>
-    <View className='w-[88%] flex-row justify-between mx-auto mt-2'>
+    <View className='w-[83%] flex-row justify-between mx-auto mt-2'>
     <ProductCurdWithDet src={images.ProdCurdWithDet1}/>
     <ProductCurdWithDet src={images.ProdCurdWithDet2}/>
     </View>
-    <View className='w-[88%] flex-row justify-between mx-auto mt-2'>
+    <View className='w-[83%] flex-row justify-between mx-auto mt-2'>
     <ProductCurdWithDet src={images.ProdCurdWithDet3}/>
     <ProductCurdWithDet src={images.ProdCurdWithDet4}/>
     </View>
-    <View className='w-[88%] flex-row justify-between mx-auto mt-2'>
+    <View className='w-[83%] flex-row justify-between mx-auto mt-2'>
     <ProductCurdWithDet src={images.ProdCurdWithDet5}/>
     <ProductCurdWithDet src={images.ProdCurdWithDet6}/>
     </View>
-    <View className='w-[88%] flex-row justify-between mx-auto mt-2'>
+    <View className='w-[83%] flex-row justify-between mx-auto mt-2'>
     <ProductCurdWithDet src={images.ProdCurdWithDet7}/>
     <ProductCurdWithDet src={images.ProdCurdWithDet8}/>
     </View>
-      </SafeAreaView>
       </ScrollView>
+      </SafeAreaView>
       </>
 
   )

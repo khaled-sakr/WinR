@@ -45,8 +45,8 @@ const FeatureImg=[{
 ]
 const Home = () => {
   return (
-    <ScrollView >
       <SafeAreaView>
+    <ScrollView >
     <HeadTitle srcIconLeft={icons.chat} srcIconRight={icons.favourite} srcIconMiddle={icons.winr}/>
     <SearchBar/>
     <View className='w-11/12 h-fit mt-6 flex-row flex justify-between mx-auto '>
@@ -94,9 +94,9 @@ const Home = () => {
       <Image source={images.sells} className='w-full'/>
       <Text className='text-6xl font-semibold text-white absolute top-16 right-5'>20% TO 70%</Text>
     </View>
-   </SafeAreaView>
    </ScrollView>
-  )
+  </SafeAreaView>
+   )
 }
 
 export default Home
