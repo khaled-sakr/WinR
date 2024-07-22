@@ -4,9 +4,9 @@ import HeadTitle from '../../components/HeadTitle'
 import { icons, images } from '../../constants'
 import SearchBar from '../../components/SearchBar'
 import CustomIcon from '../../components/CustomIcon'
-import {FlatList, Image, ScrollView, Text, View } from 'react-native'
+import { TouchableOpacity ,FlatList, Image, ScrollView, Text, View } from 'react-native'
 import ScrolImg from '../../components/ScrolImg'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import SquareText from '../../components/SquareText'
 import FeatureScrol from '../../components/FeatureScrol'
 import BoldTitle from '../../components/BoldTitle'
@@ -50,9 +50,9 @@ const Home = () => {
     <HeadTitle srcIconLeft={icons.chat} srcIconRight={icons.favourite} srcIconMiddle={icons.winr}/>
     <SearchBar/>
     <View className='w-11/12 h-fit mt-6 flex-row flex justify-between mx-auto '>
-     <Link href='/men'><CustomIcon src={images.men} title='men'/></Link>
-      <Link href='/women'><CustomIcon src={images.women} title='women'/></Link>
-      <Link href='/children'><CustomIcon src={images.children} title='children'/></Link>
+     <TouchableOpacity className='w-[122.74px]' onPress={()=>router.push('/men')} ><CustomIcon src={images.men} title='men'/></TouchableOpacity>
+      <TouchableOpacity className='w-[122.74px]' onPress={()=>router.push('/women')}><CustomIcon src={images.women} title='women'/></TouchableOpacity>
+      <TouchableOpacity className='w-[122.74px]' onPress={()=>router.push('/children')}><CustomIcon src={images.children} title='children'/></TouchableOpacity>
     </View>
     <View className='w-11/12 mx-auto mt-8 rounded-xl relative'>
     <FlatList 
@@ -65,7 +65,7 @@ const Home = () => {
      <ScrolImg src={item.src} title={item.title}/>
     }/>
     </View>
-    <BoldTitle title='Your Common Brands' addStyle='w-11/12 mt-8 mb-4 mx-auto'/>
+    <BoldTitle title='Your Common Brands' addStyle='w-11/12 mt-8 mb-4 mx-auto text-secondary'/>
     <View className='w-11/12 mx-auto flex-row justify-between '>
       <SquareText title='NIKE' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
       <SquareText title='ZARA' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
@@ -77,7 +77,7 @@ const Home = () => {
       <SquareText title='GUCCA' addstyle='text-Font text-third bg-[#DFDFDF] h-[40px] w-[95px] rounded-[5px]'/>
     </View>
 
-    <BoldTitle title='Feature Products' addStyle='w-11/12 mt-8 mb-4 mx-auto'/>
+    <BoldTitle title='Feature Products' addStyle='w-11/12 mt-8 mb-4 mx-auto text-secondary'/>
 
     <View className='w-11/12 mx-auto'>
     <FlatList 

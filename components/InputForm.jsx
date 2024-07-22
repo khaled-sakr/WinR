@@ -2,21 +2,21 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'reac
 import React, { useState } from 'react'
 import {icons,images} from '../constants'
 
-const InputForm = ({name,value,title,placeholder,type,size,addclass,handleChangeText,error,validation,LogInError,addViewStyle,addInputStyle ,...props}) => {
+const InputForm = ({name,value,title,placeholder,type,size,addclass,handleChangeText,error,validation,LogInError,addViewStyle,addInputStyle ,finalInput ,disabled,...props}) => {
   
   const [showPassword, setShowPassword] = useState(true);
   return (
-    <View className={`mb-1 relative bg-white ${size ==='full'?' w-11/12 mx-auto':'w-[48%]'} ${addViewStyle} `} >
-        <Text className='inline text-sm text-Font px-1 font-semibold'>{title}</Text>
+    <View className={`mb-1 relative ${! finalInput && 'bg-white' } ${size ==='full'?' w-11/12 mx-auto':'w-[48%]'} ${addViewStyle} `} >
+        <Text className={`inline ${ finalInput ? ' text-base mb-1 font-[400]' : 'text-sm font-semibold' } text-Font px-1 `}>{title}</Text>
         <TextInput name={name} value={value}  placeholder={placeholder} onChangeText={handleChangeText}
         secureTextEntry={title === "Password" && !showPassword}
        placeholderTextColor="#b6b6b7"
-        className={`${addclass} h-[52px] text-Font ${type} ${addInputStyle} w-full rounded-[10px] placeholder:text-sm  font-semibold px-3 border-2 ${error ? ' border-red-300 ':'border-[#C1C1C1]'} bg-[#DFDFDF] `}
+        className={`${addclass} ${ finalInput ? 'bg-white h-[42px] border' : 'bg-[#DFDFDF]  h-[52px] border-2'} text-Font ${type} ${addInputStyle} w-full rounded-[10px] placeholder:text-sm  font-semibold px-3 ${error ? ' border-red-300 ':'border-[#C1C1C1]'}`}
         />
         {error && <Text className='text-xs text-red-400 font-[500] px-1'> {error} </Text> } 
-              {title.includes('Password')  && (
+              {title.includes('Password')&& !disabled  && (
           <TouchableOpacity className={`
-          absolute ${error?'right-4 bottom-7':' right-4 bottom-4 ' } 
+          absolute ${error ?(finalInput? 'right-4 bottom-5.5':'right-4 bottom-7'):(finalInput ? ' right-4 bottom-2.5 ':' right-4 bottom-4 ') } 
           `}
             onPress={() => setShowPassword(!showPassword)}>
             <Image

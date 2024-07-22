@@ -1,4 +1,4 @@
-import { ScrollView, View, FlatList } from 'react-native'
+import { ScrollView, View, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import HeadTitle from '../../../components/HeadTitle'
@@ -6,11 +6,11 @@ import { icons, images } from '../../../constants'
 import SearchBar from '../../../components/SearchBar'
 import CustomIcon from '../../../components/CustomIcon'
 import TitleWithLine from '../../../components/TitleWithLine'
-import { Link } from 'expo-router'
 import BoldTitle from '../../../components/BoldTitle'
 import SquareText from '../../../components/SquareText'
 import FlatHorScrol from '../../../components/FlatHorScrol'
 import ProductCurd from '../../../components/ProductCurd'
+import { router } from 'expo-router'
 
 const menPro=[{
   src:images.menPro1,
@@ -41,19 +41,20 @@ const Men = () => {
   <TitleWithLine title='SHOP ALL CATEGORIES' addStyle='font-[300]' size='w-full'/>
 
   <View className='w-11/12 h-fit mt-4 flex-row flex justify-between mx-auto '>
-  <Link href='/categories/t-shirt'><CustomIcon src={images.tshirt} title='t-shirt'/></Link>
-  <Link href='/categories/shirt'><CustomIcon src={images.shirt} title='shirt'/></Link>
-  <Link href='/categories/sweat-shirt'><CustomIcon src={images.sweatshirt} title='sweat shirt'/></Link>
+  <TouchableOpacity onPress={()=>router.push('/categories/[t-shirt]')}><CustomIcon src={images.tshirt} title='t-shirt'/></TouchableOpacity>
+  <TouchableOpacity onPress={()=>router.push('/categories/shirt')}><CustomIcon src={images.shirt} title='shirt'/></TouchableOpacity>
+  <TouchableOpacity onPress={()=>router.push('/categories/sweat-shirt')}><CustomIcon src={images.sweatshirt} title='sweat shirt'/></TouchableOpacity>
   </View>
   <View className='w-11/12 h-fit mt-2 flex-row flex justify-between mx-auto '>
-  <Link href='/categories/Fashion'><CustomIcon src={images.fashion} title='Fashion'/></Link>
-  <Link href='/categories/Sport'><CustomIcon src={images.sport} title='Sport'/></Link>
-  <Link href='/categories/Swim-Wear'><CustomIcon src={images.swimming} title='Swim Wear'/></Link>
+  <TouchableOpacity onPress={()=>router.push('/categories/Fashion')}><CustomIcon src={images.fashion} title='Fashion'/></TouchableOpacity>
+  <TouchableOpacity onPress={()=>router.push('/categories/Sport')}><CustomIcon src={images.sport} title='Sport'/></TouchableOpacity>
+  <TouchableOpacity onPress={()=>router.push('/categories/Swim-Wear')}><CustomIcon src={images.swimming} title='Swim Wear'/></TouchableOpacity>
   </View>
   <View className='w-11/12 mx-auto flex flex-row justify-between mt-8'>
-    <BoldTitle title='Curated for you'  addstyle=''/>
+    <BoldTitle title='Curated for you'  addstyle='text-secondary'/>
     <SquareText title='SHOP NOW' addstyle='text-Font text-third bg-secondary text-white h-[40px] w-[106px] rounded-[2px]'/>
   </View>
+   <View className='bg-[#E0E0E0] w-full h-3 my-3'/>
   <FlatList 
   className='mt-6 w-11/12 mx-auto'
     data={menPro}

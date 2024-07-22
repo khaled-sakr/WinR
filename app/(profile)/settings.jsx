@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Confirm = () => {
+const Settings = () => {
   return (
     <View>
-      <Text>Confirm</Text>
+      <Text>Settings</Text>
     </View>
   )
 }
 
-export default Confirm
+export default Settings
 
 const styles = StyleSheet.create({})

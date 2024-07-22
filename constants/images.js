@@ -54,16 +54,21 @@ import imgWomenCurd1 from "../assets/images/imgWomenCurd1.png";
 import imgWomenCurd2 from "../assets/images/imgWomenCurd2.png";
 import imgWomenCurd3 from "../assets/images/imgWomenCurd3.png";
 import productImg from "../assets/images/productImg.png";
+import productImgfront from "../assets/images/productImgfront.png";
+import productImgback from "../assets/images/productImgback.png";
 import prodAddImg from "../assets/images/prodAddImg.png";
 import mencategory from "../assets/images/mencategory.png";
 import womencategory from "../assets/images/womencategory.png";
 import childrencategory from "../assets/images/childrencategory.png";
+import adressblur from "../assets/images/adressblur.png";
+import address from "../assets/images/address.png";
+import profileimage from "../assets/images/profileimage.png";
+import paymentfailed from "../assets/images/paymentfailed.png";
+import curdback from "../assets/images/curdback.png";
 export default { 
-    // profile, thumbnail,
      welcome,
      welcome3,
      start,
-    //   path,
        logo,
     iconapp,facebook
     ,twitter
@@ -112,8 +117,15 @@ export default {
    imgWomenCurd2,
    imgWomenCurd3,
    productImg,
+   productImgfront,
+   productImgback,
    prodAddImg,
    mencategory,
-womencategory,
-childrencategory,
+   womencategory,
+   childrencategory,
+   adressblur,
+   address,
+   profileimage,
+   paymentfailed,
+   curdback
  };

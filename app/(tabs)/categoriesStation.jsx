@@ -10,7 +10,7 @@ const CategoriesStation = () => {
   return (
     <SafeAreaView>
     <ScrollView>
-    <HeadTitle  srcIconRight={icons.favourite} srcIconMiddle={icons.men}/>
+    <HeadTitle  srcIconRight={icons.favourite} srcIconMiddle={icons.winr} middle/>
   <SearchBar/>
       <CategoryCurd src={images.mencategory} title='Fashion Men'/>
       <CategoryCurd src={images.womencategory} title='Fashion Women'/>

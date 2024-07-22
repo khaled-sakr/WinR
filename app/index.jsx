@@ -8,6 +8,8 @@ const Start = () => {
     // router.replace('men')
     // router.replace('/sign-up')
     router.replace('home')
+    // router.replace('payment')
+    // router.replace('address')
     // router.replace('/sign-up')
   }
   const myInterval = setInterval(setTimeOneTime, 1000);

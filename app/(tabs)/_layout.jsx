@@ -9,10 +9,10 @@ const TabIcon = ({ icon, color, name, focused }) => {
         source={icon}
         resizeMode="contain"
         tintColor={color}
-        className="w-10 h-10"
+        className={` ${focused ?( name === 'Home' ? 'w-14 h-14' : 'w-12 h-12') : (name === 'Home' ? ' w-12 h-12 ':' w-10 h-10 ') }`}
       />
       <Text
-        className={`${focused ? "font-bold" : "font-semibold"} text-xs`}
+        className={`${focused ? "font-bold" : "font-semibold"} text-xs ${name==='Home' && 'mb-1' }`}
         style={{ color: color }}
       >
         {name}
@@ -30,7 +30,7 @@ const Tabslayout = () => {
       tabBarShowLabel: false,
       tabBarStyle: {
         backgroundColor: "#F2F4F7",
-        borderTopWidth: 1,
+        borderTopWidth: 0,
         height: 90,
       },
     }}
@@ -113,15 +113,6 @@ const Tabslayout = () => {
                     },
                   }}
           />
-                 <Tabs.Screen
-                          name="(confirm)"
-                          options={{
-                            headerShown: false,
-                            tabBarItemStyle: {
-                              display: 'none',
-                            },
-                          }}
-                  />
           <Tabs.Screen
                   name="(section)"
                   options={{

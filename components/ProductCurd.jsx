@@ -9,7 +9,6 @@ const ProductCurd = ({src , title , price , discount , blur}) => {
   const [fav,setFav]=useState(true)
 
   return (
-    <View>
         <View className='flex flex-row w-full mt-4'>
             <Image source={src} blurRadius={blur} />
         <View className='flex flex-col relative flex-1'>
@@ -29,7 +28,6 @@ const ProductCurd = ({src , title , price , discount , blur}) => {
             </TouchableOpacity>
         </View>
         </View>
-    </View>
   )
 }
 

@@ -13,7 +13,7 @@ const Children = () => {
   return (
     <SafeAreaView>
     <ScrollView >
-      <HeadTitle srcIconLeft={icons.chat} srcIconRight={icons.favourite} srcIconMiddle={icons.men}/>
+      <HeadTitle srcIconLeft={icons.chat} srcIconRight={icons.favourite} srcIconMiddle={icons.children}/>
       <SearchBar/>
       <TitleWithLine title='SHOP ALL CATEGORIES' addStyle='font-[300]' size='w-full'/>
       <View className='w-11/12 h-fit mt-4 flex-row flex justify-between mx-auto '>
