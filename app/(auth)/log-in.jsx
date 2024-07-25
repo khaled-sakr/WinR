@@ -6,46 +6,61 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../constants'
 import { router } from 'expo-router'
 import TitleWithLine from '../../components/TitleWithLine'
+import { signUp } from '../../lib/supabase'
 
 const defaultValues={
   email:'',
   password:''
 }
 const logIn = () => {
-  const [form, setForm] = useState(defaultValues
-  );
+  const [form, setForm] = useState(defaultValues)
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const handleChange = (i,value) => {
+    setForm({ ...form, [i]: value });
+  };
   const validate = () => {
     const newErrors = [];
     if (!form.email) newErrors.push("The email is required");
+    if (form.email && !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(form.email))newErrors.push("The email must be valid");
     if (!form.password) newErrors.push("The password is required");
     return newErrors;
   };
-  const handleSubmit = () => {
+  const signIn = async () => {
     const validationErrors = validate();    
     if (Object.keys(validationErrors).length > 0) {
     setErrors(validationErrors);
   } else {
-    router.replace('/home')
-    setErrors({});
-  }}
-    const [errors, setErrors] = useState([]);
-    const handleChange = (i,value) => {
-      setForm({ ...form, [i]: value });
-    };
+     setLoading(true)
+     const { error } = signUp (form.email,form.password)
+      
+      if (error) {
+        setErrors(error.message);
+        console.log(error.message);
+        setForm(defaultValues)
+        setLoading(false)
+      } else {
+        setLoading(false)
+        router.replace('/home')
+      }
+    }
+  };
   return (
     <SafeAreaView className='w-full bg-white h-full'>
     <Text className='text-5xl text-Font text-center font-bold mb-12 mt-32'>Log In</Text>
     <View>
-      <InputForm  handleChangeText={(value) => handleChange('email', value)} value={form.email} name='email' placeholder='Your email Adress'  title='Email Adress' type='normal' size='full'  error={errors?.includes("The email is required") ? "The email is required" : ''} addViewStyle='my-3'/>
+      <InputForm  handleChangeText={(value) => handleChange('email', value)} value={form.email} name='email' placeholder='Your email Adress'  title='Email Adress' type='normal' size='full'  error={errors?.includes("The email is required") && "The email is required"  ||errors?.includes('The email must be valid') && "The email must be valid" } addViewStyle='my-3'/>
     <InputForm  handleChangeText={(value) => handleChange('password', value)} value={form.password} name='password' placeholder='Your password'  title='Password' type='normal' size='full'  error={errors?.includes("The password is required") ? "The password is required" : ''} addViewStyle='mt-3 '/>
       </View>
-   {errors?.includes("The password is required")  && <Text className='text-red-400 font-[800] text-xs text-center'>Something is wrong , Try another inputs</Text>  }
-    <CustomButton onPress={handleSubmit} title='Log In' size='large' type='startButtoms' addStyle='mt-8'  />
+   {errors?.includes("Invalid login credentials")  && <Text className='text-red-400 font-[800] text-xs text-center'>Invalid login credentials! Try Another One password or email</Text>  }
+   {errors.includes('Email rate limit exceeded')&&<Text className='mx-auto text-xs w-11/12 text-center mt-1 font-semibold text-red-500'>Email rate limit exceeded</Text>}
+   {errors.includes('Email not confirmed')&&<Text className='mx-auto text-xs w-11/12 text-center mt-1 font-semibold text-red-500'>Email not confirmed</Text>}
+    <CustomButton loading = {loading} onPress={signIn} title='Log In' size='large' type='startButtoms' addStyle='mt-8'  />
     <View className='mt-2 mx-auto flex flex-row'>
           <Text className='text-sm font-[200]'>
             Don't have An Account?
           </Text>
-          <TouchableOpacity onPress={()=>{router.replace('/sign-up')}}><Text className='text-sm text-secondary font-[600] underline'>
+          <TouchableOpacity  onPress={()=>{router.replace('/sign-up')}}><Text className='text-sm text-secondary font-[600] underline'>
             Sign Up </Text>
               </TouchableOpacity>
     </View>

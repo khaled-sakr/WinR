@@ -2,29 +2,29 @@ import { View, Image, ImageBackground, ActivityIndicator, Text, TouchableOpacity
 import React, { useEffect, useState } from 'react';
 import {images} from'../constants'
 import { router} from 'expo-router';
-const Start = () => { 
+import { supabase } from '../lib/supabase';
+const Index = () => { 
   useEffect(() => {
     const setTimeOneTime=()=>{
-    // router.replace('men')
-    // router.replace('/sign-up')
-    router.replace('home')
-    // router.replace('payment')
-    // router.replace('address')
-    // router.replace('/sign-up')
+    supabase.auth.onAuthStateChange((session)=>{
+      if(session) {
+        router.replace('home')
+      }else {
+        router.replace('payment')
+      }
+     })
   }
   const myInterval = setInterval(setTimeOneTime, 1000);
-  // const myInterval = setInterval(setTimeOneTime, 3000);
-      return () => clearInterval(myInterval); 
+      return () => clearInterval(myInterval);
     }, [])
-    
-        return  ( <ImageBackground source={images.start} resizeMode='cover' >
-        <View className='h-full bg-slate-800/50 space-y-6 w-screen'>
-           <Image  source={images.logo} resizeMode='contain' className='w-[246px] h-[152px] flex justify-center items-center mx-auto mt-40 '/>
-             <ActivityIndicator size="30%" color="#363736"/>
-           </View>
-                  </ImageBackground> )
-
-      }
-
-export default Start;
+        return  (
+           <ImageBackground source={images.start} resizeMode='cover' >
+                 <View className='h-full bg-slate-800/50 space-y-6 w-screen'>
+                          <Image  source={images.logo} resizeMode='contain' className='w-[246px] h-[152px] flex justify-center items-center mx-auto mt-40 '/>
+                          <ActivityIndicator size="30%" color="#363736"/>
+                 </View>
+             </ImageBackground>
+                )
+    }
+export default Index;
 

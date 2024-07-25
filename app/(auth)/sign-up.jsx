@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+import { Image, SafeAreaView, Text, TouchableOpacity, View ,Alert} from 'react-native'
 import React from 'react'
 import InputForm from '../../components/InputForm'
 import CustomButton from '../../components/CustomButton'
@@ -6,16 +6,18 @@ import { images } from '../../constants'
 import { Link, router } from 'expo-router'
 import { useState } from 'react'
 import TitleWithLine from '../../components/TitleWithLine'
+import { signIn } from '../../lib/supabase'
 const defaultValues={firstname: "",
 lastname: "",
 email: "",
 password: "",
 confirmPasssword: "",
 }
-const signUp = () => {
+const SignUp = () => {
   const [form, setForm] = useState(defaultValues
 );
   const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false);
   const handleChange = (i,value) => {
     setForm({ ...form, [i]: value });
   };
@@ -31,15 +33,25 @@ const signUp = () => {
     if (!form.confirmPasssword) newErrors.push("The confirm is required");
     if (form.confirmPasssword && form.confirmPasssword !== form.password) newErrors.push("This confirm must be equal the password");   
     return newErrors;
-  };
-  const handleSubmit = () => {
+  }; 
+  const signUpFun = async () => {
     const validationErrors = validate();    
     if (Object.keys(validationErrors).length > 0) {
     setErrors(validationErrors);
   } else {
-    setErrors({});
-    router.replace('/home')
-  }}
+     setLoading(true)
+     const { error } = signIn (form.email , form.password , form.firstname , form.lastname)
+      if (error) {
+        setErrors(error.message)
+        console.log(error.message)
+        setForm(defaultValues)
+        setLoading(false)
+      } else {
+        setLoading(false)
+        router.replace('/home')
+      }
+    }
+  };
   return (
     <SafeAreaView className='w-full bg-white h-full'>
       <Text className='text-5xl text-Font text-center font-bold my-20'>Sign Up</Text>
@@ -48,11 +60,13 @@ const signUp = () => {
       
         <InputForm handleChangeText={(value) => handleChange('lastname', value)} value={form.lastname} name='lastname' placeholder='Sakr' title='Last Name' type='normal' size='half'   error={errors?.includes("The last name is required") ? "The last name is required" : ''} />
         </View>
-      <InputForm handleChangeText={(value) => handleChange('email', value)} value={form.email} name='email' title='Email Address' placeholder='khaledsakr12345@gmail.com' error={errors?.includes("The email is required") ? "The email is required" : ''  || errors?.includes("The email must be valid") ? "The email must be valid" : ''}   type='normal' size='full' addclass=''  />
+      <InputForm handleChangeText={(value) => handleChange('email', value)} value={form.email} name='email' title='Email Address' placeholder='khaledsakr12345@gmail.com' error={errors?.includes("The email is required") &&"The email is required"   || errors?.includes("The email must be valid") && "The email must be valid"}   type='normal' size='full' addclass=''  />
       <InputForm handleChangeText={(value) => handleChange('password', value)} value={form.password} name='password' title='Password' placeholder='**********' type='normal' size='full' addclass='' error={errors?.includes("The password is required") ? "The password is required" : '' || errors?.includes("The password must be above 8 char") ? "The password must be above 8 char" : ''}  />
       <InputForm handleChangeText={(value) => handleChange('confirmPasssword', value)} value={form.confirmPasssword} name='confirmPassword' title='Confirm Password'  placeholder='**********' type='normal' size='full' addclass='' error={errors?.includes("The confirm is required") ? "The confirm is required" : '' || errors.includes("This confirm must be equal the password") ? "This confirm must be equal the password" : ''}  />
     
-      <CustomButton onPress={handleSubmit} title='Create Account' size='large' type='startButtoms' addStyle='mt-10'/>
+      <CustomButton loading={loading} onPress={signUpFun} title='Create Account' size='large' type='startButtoms' addStyle='mt-10'/>
+      {errors.includes('Email rate limit exceeded')&&<Text className='mx-auto text-xs w-11/12 text-center mt-1 font-semibold text-red-500'>Email rate limit exceeded</Text>}
+      {/* {errors.includes('Email rate limit exceeded')&&<Text className='text-xs w-11/12 text-center mt-1 font-semibold text-red-500'>Email rate limit exceeded</Text>} */}
       <TitleWithLine title='OR' size='w-3/12' addStyle='font-bold'/>
           <View className='flex flex-row w-8/12 mx-auto mt-3 justify-between'>
     <View className='border border-slate-300 rounded-full p-3'>
@@ -79,6 +93,6 @@ const signUp = () => {
   )
 }
 
-export default signUp
+export default SignUp
 
 

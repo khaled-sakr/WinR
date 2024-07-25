@@ -14,7 +14,17 @@ import ButtonSize from '../../../components/ButtonSize';
 import { FlatList } from 'react-native';
 import ImageProduct from '../../../components/ImageProduct';
 import Hr from '../../../components/Hr';
-
+const numberOfOptions = [
+  {title: '1', value : 1},
+  {title: '2', value : 2},
+  {title: '3', value : 3},
+  {title: '4', value : 4},
+  {title: '5', value : 5},
+  {title: '6', value : 6},
+  {title: '7', value : 7},
+  {title: '8', value : 8},
+  {title: '9', value : 9},
+  ]; 
 const Product = () => {
   const { product } = useLocalSearchParams();
   const [value , setValue] = useState()
@@ -36,7 +46,7 @@ const Product = () => {
           <Text className='text-slate-400 text-center'>
             QTY
           </Text>
-          <DropDown setValue={setValue} addStyle='absolute top-1'/>
+          <DropDown placeholder='1' options={numberOfOptions} setValue={setValue} addStyle='absolute top-1'/>
           </View>
           <View className='w-7/12'>    
         <TouchableOpacity activeOpacity={0.7} onPress={()=>router.push('/cart')} className={`w-11/12 mx-auto shadow-2xl  bg-secondary font-semibold rounded-md flex justify-center`}>

@@ -29,6 +29,17 @@ const menPro=[
 }
 ]
 
+const numberOfOptions = [
+  {title: '1', value : 1},
+  {title: '2', value : 2},
+  {title: '3', value : 3},
+  {title: '4', value : 4},
+  {title: '5', value : 5},
+  {title: '6', value : 6},
+  {title: '7', value : 7},
+  {title: '8', value : 8},
+  {title: '9', value : 9},
+  ]; 
 const Cart = () => {
   const [value , setValue] = useState()
   return (
@@ -56,7 +67,7 @@ const Cart = () => {
       <View className='relative flex-row mt-3 w-11/12 mx-auto justify-between bg-red- '>
         <View className='w-5/12  flex-row'>
         <View className='w-5/12  border-[0.75px] border-slate-400 rounded-md relative'>
-          <DropDown setValue={setValue} addStyle='-top-2 absolute'/>
+          <DropDown  placeholder='1' options={numberOfOptions} setValue={setValue} addStyle='-top-2 absolute'/>
         </View>
         <TouchableOpacity activeOpacity={0.5} className='rounded-md w-8/12 ml-2 py-2 flex-row border-[0.75px] border-slate-400 px-3'>
           <Image source={icons.remove}/>

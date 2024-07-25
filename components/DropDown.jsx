@@ -15,20 +15,20 @@ import React from 'react'
     ]; 
    
 
-const DropDown = ({setValue , addStyle}) => {
+const DropDown = ({placeholder,setValue , addStyle ,options ,settings}) => {
   return (
     <View className={`${addStyle}`}>
     <SelectDropdown
-    data={emojisWithIcons}
+    data={options}
     onSelect={(selectedItem, index) => {
         // console.log(selectedItem)
         setValue(selectedItem.value)
     }}
     renderButton={(selectedItem, isOpened) => {
       return (
-        <View style={styles.dropdownButtonStyle}>
-          <Text style={styles.dropdownButtonTxtStyle}>
-            {(selectedItem && selectedItem.title) || '1'}
+        <View  style={settings ? styles.dropdownButtonStyleFinal : styles.dropdownButtonStyle}>
+          <Text style={settings ? styles.dropdownButtonTxtStyleFinal:styles.dropdownButtonTxtStyle}>
+            {(selectedItem && selectedItem.title) || placeholder }
           </Text>
           <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} style={styles.dropdownButtonArrowStyle} />
         </View>
@@ -53,20 +53,37 @@ export default DropDown
 
   const styles = StyleSheet.create({
       dropdownButtonStyle: {
-      width: 65,
       height: 50,
-      //   backgroundColor: '',
+      width:65,
       borderRadius: 12,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
       paddingHorizontal: 12,
     },
+      dropdownButtonStyleFinal: {
+      height: 50,
+      width:'100%',
+      borderRadius: 12,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingHorizontal: 12,
+    },
+    width:{
+      width:'65'
+    },
     dropdownButtonTxtStyle: {
       flex: 1,
       fontSize: 18,
       fontWeight: '400',
-      color: '#151E26',
+      color: '#181f25',
+    },
+    dropdownButtonTxtStyleFinal: {
+      flex: 1,
+      fontSize: 18,
+      fontWeight: '400',
+      color: '#727476',
     },
     dropdownButtonArrowStyle: {
       fontSize: 24,
