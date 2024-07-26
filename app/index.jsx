@@ -1,6 +1,6 @@
 import { View, Image, ImageBackground, ActivityIndicator, Text, TouchableOpacity, FlatList } from 'react-native'
-import React, { useEffect, useState } from 'react';
-import {images} from'../constants'
+import React , { useEffect } from 'react';
+import {images} from'../constants';
 import { router} from 'expo-router';
 import { supabase } from '../lib/supabase';
 const Index = () => { 
@@ -10,6 +10,7 @@ const Index = () => {
       if(session) {
         router.replace('home')
       }else {
+        router.replace('home')
         router.replace('payment')
       }
      })

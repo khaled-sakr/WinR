@@ -16,16 +16,15 @@ const Settings = () => {
   const [loading , setLoading]=useState(false)
   const [notfication , setNotfication] = useState(false)
   
-  useEffect(() => {
-    const fetchUser = async () => {
-        const userData = await getCurrentUser();
-        setUser(userData);
-    };
-    fetchUser();
-    console.log(user)
-}, []);
+//   useEffect(() => {
+//     const fetchUser = async () => {
+//         const userData = await getCurrentUser();
+//         setUser(userData);
+//     };
+//     fetchUser();
+//     console.log(user)
+// }, []);
   async function signOut(){
-  // getUser(setUser)
   setLoading(true)
   const { error } = await supabase.auth.signOut();
   if (error) {
@@ -72,7 +71,6 @@ router.replace('/log-in')
     <Text className='w-6/12 font-semibold text-lg mt-3'>
       Notification
     </Text>
-    {/* setNotfication((prev) => !prev) ; */}
       <TouchableOpacity className='w-[16%] flex-row ' onPress={()=>{setNotfication((e)=>!e);animatedAction()}}>
         <View className={` px-1 w-full ${ notfication ? 'bg-secondary' : 'bg-gray-300'} h-7 my-auto rounded-[30px] mr-3`}>
         <Animated.View style={[{translateX:(fadeAnim)}]} className = {`h-5 my-auto absolute top-1 transition-all w-5/12  ${notfication ? 'bg-slate-300 left-0':'bg-slate-900 left-[5px]'} rounded-2xl`}>

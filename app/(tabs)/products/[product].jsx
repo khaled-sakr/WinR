@@ -40,7 +40,7 @@ const Product = () => {
   console.log(prodNumImg)
  const  listData= [{src : images.productImg , id : 1} , {src : images.productImgfront , id : 2} , {src : images.productImgback , id : 3}]
   return (
-<View>
+  <SafeAreaView> 
       <View className='bg-[#F2F4F7] z-10 flex-row justify-between px-6 py-3 absolute bottom-0 h-[70px] w-full rounded-t-2xl border-t-[0.5px] border-r-[0.5px] border-l-[0.5px] border-slate-300'>
           <View className='relative mx-auto border rounded-md border-slate-400 px-4'>
           <Text className='text-slate-400 text-center'>
@@ -56,7 +56,7 @@ const Product = () => {
           </TouchableOpacity>
           </View>
         </View>
-    <SafeAreaView>
+  
     <ScrollView className='relative' style={{ marginBottom: 70 }}>
     <HeadTitle srcIconLeft={icons.back} srcIconRight={icons.favourite} srcIconMiddle={icons.winr}/>
     <SearchBar/>
@@ -142,8 +142,8 @@ const Product = () => {
     </View>
     {/* <Grid text='hello world' /> */}
     </ScrollView>
-    </SafeAreaView>
-</View>
+ 
+   </SafeAreaView>
   
   )
 }

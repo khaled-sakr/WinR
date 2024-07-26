@@ -1,55 +1,22 @@
-import { Animated ,Image ,TouchableOpacity, Text, View } from 'react-native'
+import { TouchableOpacity ,Image , Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { Entypo } from '@expo/vector-icons'
-import { useRef } from 'react';
 import { images } from '../constants';
 
-const ThreeDotCridit = ({item,setChosenCard ,chosenCard}) => {
-    const [threeDot , setThreeDot] = useState(false);
-    const slide = useRef(new Animated.Value(0)).current;
-    function animatedAction() {
-      if (!threeDot) {   
-              Animated.timing(slide, {
-                  toValue:0,
-                  duration: 300,
-                  useNativeDriver: true,
-              }).start();
-      }else{
-          Animated.timing(slide, {
-              toValue: 128,
-              duration: 300,
-              useNativeDriver: true,
-            }).start();
-      }
-    } 
+const ThreeDotCridit = ({item, setThreeDot ,setChosenCard ,chosenCard}) => {
   return (
-      <>
-      <View className='flex-row justify-end w-[88%] mx-auto'>
-      <TouchableOpacity className='justify-end' onPress={()=>{animatedAction() ; setThreeDot((e)=>!e)}}>
+      <View className='mb-2'>
+      <View className='flex-row justify-end w-[88%] mx-auto mt-2'>
+    <View className='w-11/12 mx-auto'>
+    <TouchableOpacity activeOpacity={0.8} onPress={()=>setChosenCard(item)} className='w-5 h-5 rounded-full border-slate-500 border-2 ml-2'>
+      <View className={`w-3 h-3 rounded-full m-auto ${chosenCard === item ? ' bg-green-700': 'bg-transparent'}`}/>
+      </TouchableOpacity>
+    </View>
+      <TouchableOpacity activeOpacity={0.7} className='justify-end z-10 mr-1' onPress={()=>setThreeDot(true)}>
       <Entypo name="dots-three-vertical" size={20} color="black" />
       </TouchableOpacity>
-      </View>
-     
-      
-     {threeDot && <TouchableOpacity activeOpacity={1} onPress={()=>
-      {animatedAction();
-      setThreeDot(false)}
-     } className='justify-end w-screen h-screen absolute z-10 '>
-      
-      </TouchableOpacity> 
-      }
-       <View className='absolute bottom-0 h-[15%] w-full'>  
-          <Animated.View style={[{translateY:(slide)}]} className={`pt-1  h-full w-full rounded-t-[30px] bg-slate-200 z-10`}>
-        <TouchableOpacity activeOpacity={0.6} className='w-11/12 h-[30%] items-center  mx-auto flex-1 font-semibold text-center my-2'>
-           <Text className='font-bold text-center text-base text-slate-600 my-auto'>delete</Text>
-           </TouchableOpacity>
-                <View className='w-full h-[0.5%] rounded-xl mx-auto bg-slate-500 '/>
-           <TouchableOpacity onPress={()=>{setChosenCard(item);setThreeDot(false);animatedAction()}} activeOpacity={0.6} className='w-11/12 h-[64.5%] items-center  mx-auto flex-1 font-semibold text-center my-2'>
-           <Text className='font-bold text-center text-base text-slate-600 my-auto'>Choose Default</Text>
-           </TouchableOpacity>
-          </Animated.View>
-       </View> 
-     <View className={`my-4 w-[343px] h-[218px] rounded-xl mx-auto border-4  ${chosenCard === item ? ' border-green-600': 'border-transparent'}`}>
+      </View> 
+     <TouchableOpacity activeOpacity={0.8} onPress={()=>setChosenCard(item)} className={`my-2 w-[343px] h-[218px] rounded-xl mx-auto border-4 border-dashed  `}>
      <Image source={images.curdback} className='rounded-lg w-[335px] h-[210px] mx-auto '/>
      <Text className='text-3xl absolute top-4 right-4 font-extrabold text-white'>VISA</Text>
      <Text className='absolute font-[300] top-20 left-4 text-white text-xl tracking-[6px]'>1111 2222 3333 4444</Text>
@@ -57,8 +24,8 @@ const ThreeDotCridit = ({item,setChosenCard ,chosenCard}) => {
      <Text className={`text-xs font-bold absolute bottom-4 left-12 text-white`}>KHALED</Text>
      <Text className={`text-xs font-bold absolute bottom-8 right-4 text-white`}>VALID TRUE</Text>
      <Text className={`text-xs font-bold absolute bottom-4 right-8 text-white`}>03/26</Text>
-     </View>
-       </>
+     </TouchableOpacity>
+       </View>
  )
 }
 
