@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import { Entypo } from '@expo/vector-icons'
 import { images } from '../constants';
 
-const ThreeDotCridit = ({item, setThreeDot ,setChosenCard ,chosenCard}) => {
+const ThreeDotCridit = ({item, setThreeDot,key ,setChosenCard ,chosenCard}) => {
   return (
-      <View className='mb-2'>
+      <View className='mb-2' key={key}>
       <View className='flex-row justify-end w-[88%] mx-auto mt-2'>
     <View className='w-11/12 mx-auto'>
     <TouchableOpacity activeOpacity={0.8} onPress={()=>setChosenCard(item)} className='w-5 h-5 rounded-full border-slate-500 border-2 ml-2'>
