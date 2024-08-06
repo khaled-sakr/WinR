@@ -8,12 +8,12 @@ const FlatHorScrol = ({ imgsrc, name, price, blur }) => {
       onPress={() => {
         router.push(`products/${3}`);
       }}
-      className="w-[174px] h-[242px] mr-2"
+      className="w-[174px] h-[242px] mr-4"
     >
       <Image
         blurRadius={blur}
         source={{ uri: imgsrc }}
-        resizeMode="contain"
+        resizeMode="cover"
         className="w-[174px] h-[201px] rounded-xl"
       />
       <Text className="font-bold  pl-2 pt-1">{name}</Text>

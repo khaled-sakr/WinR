@@ -55,16 +55,20 @@ const SignUp = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      signUp(form.email, form.password, form.firstname, form.lastname).then(
-        (result) => {
-          if (result.success) {
-            router.replace("/home");
-          } else {
-            setForm(defaultValues);
-            Alert.alert("Error", "Email rate llimit exceeded");
-          }
+      setLoading(true);
+      await signUp(
+        form.email,
+        form.password,
+        form.firstname,
+        form.lastname
+      ).then((result) => {
+        if (result.success) {
+          router.replace("/home");
+        } else {
+          setForm(defaultValues);
+          Alert.alert("Error", "Email rate llimit exceeded");
         }
-      );
+      });
       setLoading(false);
     }
   };

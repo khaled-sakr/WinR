@@ -22,7 +22,7 @@ const FlatHorScrolLoading = () => {
   return (
     <Animated.View
       style={[{ opacity }]}
-      className="w-[174px] h-[242px] mr-2 animate-spin"
+      className="w-[174px] h-[242px] mx-2 animate-spin"
     >
       <View className="w-[174px] h-[201px] rounded-xl bg-gray-300" />
       <View className="inline-block bg-gray-300 w-6/12 h-8 rounded-md my-1" />

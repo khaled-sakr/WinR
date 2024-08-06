@@ -38,7 +38,8 @@ const logIn = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      login(form.email, form.password).then((result) => {
+      setLoading(true);
+      await login(form.email, form.password).then((result) => {
         if (result.success) {
           router.replace("/home");
         } else {
