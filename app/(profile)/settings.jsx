@@ -31,12 +31,10 @@ const Settings = () => {
       const { error } = logOut();
       if (error) {
         Alert.alert("Error signing out:", error.message);
-        setLoading(false);
       } else {
-        setLoading(false);
         router.replace("welcome");
-        // registerRootComponent('welcome')
       }
+      setLoading(false);
     } catch (error) {
       throw new error();
     }

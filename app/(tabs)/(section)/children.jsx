@@ -1,8 +1,8 @@
 import { Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TitleWithLine from "../../../components/TitleWithLine";
-import { Link } from "expo-router";
+import { Link, useFocusEffect } from "expo-router";
 import CustomIcon from "../../../components/CustomIcon";
 import { icons, images } from "../../../constants";
 import HeadTitle from "../../../components/HeadTitle";
@@ -15,16 +15,17 @@ import { ScrollView } from "react-native";
 const Children = () => {
   const [childrenProducts, setChildrenProducts] = useState([]);
   const [isLoading, setIsLoading] = useState();
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      const data = await getProducts("section", "children");
-      setIsLoading(false);
-      setChildrenProducts(data);
-    }
-    fetchData();
-  }, []);
-
+  async function fetchData() {
+    setIsLoading(true);
+    const data = await getProducts("section", "children");
+    setIsLoading(false);
+    setChildrenProducts(data);
+  }
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
   return (
     <SafeAreaView>
       <ScrollView>

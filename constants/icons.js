@@ -44,6 +44,8 @@ import setting from "../assets/icons/setting.png";
 import rightarrow from "../assets/icons/rightarrow.png";
 import alert from "../assets/icons/alert.png";
 import emptyCart from "../assets/icons/emptyCart.png";
+import hurtgray from "../assets/icons/hurtgray.png";
+import x from "../assets/icons/x.png";
 
 export default {
   play,
@@ -92,4 +94,6 @@ export default {
   rightarrow,
   alert,
   emptyCart,
+  hurtgray,
+  x,
 };

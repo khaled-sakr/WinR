@@ -29,9 +29,9 @@ const Cart = () => {
     async function fetchData() {
       setIsLoading(true);
       const cart = await getCart();
-      const data = await getProducts("section", "men");
+      const offers = await getProducts("section", "men");
       setCart(cart);
-      setOffers(data);
+      setOffers(offers);
       setIsLoading(false);
     }
     fetchData();
@@ -46,6 +46,7 @@ const Cart = () => {
               srcIconRight={icons.favourite}
               srcIconMiddle={icons.winr}
             />
+            <SearchBar />
             <View className="w-11/12 ">
               <Image
                 source={icons.emptyCart}
@@ -94,7 +95,7 @@ const Cart = () => {
           />
           <SearchBar />
 
-          {isLoading ? (
+          {/* {isLoading ? (
             <FlatList
               className="mt-3 w-full mx-auto"
               data={[{ id: 1 }]}
@@ -108,48 +109,79 @@ const Cart = () => {
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => <ProductCart cartData={item} cart />}
             />
-          )}
+          )} */}
+          <View className="mt-3 space-y-5 w-11/12 mx-auto">
+            {!isLoading ? (
+              cart.map((item) => <ProductCart cartData={item} cart />)
+            ) : (
+              <ProductCartLoading cart />
+            )}
+          </View>
           <Hr />
           <BoldTitle
             title="We think you might like these"
             addStyle="w-11/12 mt-2 text-base mx-auto  text-secondary"
           />
-          {isLoading ? (
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            >
-              <FlatList
-                horizontal
-                className="mt-6 w-11/12 mx-auto"
-                data={[{ id: 1 }, { id: 2 }]}
+          {/* <>
+            {isLoading ? (
+              <ScrollView
+                horizontal={true}
                 showsHorizontalScrollIndicator={false}
-                keyExtractor={(item) => item.id}
-                renderItem={() => <FlatHorScrolLoading />}
-              />
-            </ScrollView>
-          ) : (
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            >
-              <FlatList
-                className="mt-3 w-11/12 mx-auto"
-                data={offers.slice(0, 4)}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
+              >
+                <FlatList
+                  horizontal
+                  className="mt-6 w-11/12 mx-auto"
+                  data={[{ id: 1 }, { id: 2 }]}
+                  showsHorizontalScrollIndicator={false}
+                  keyExtractor={(item) => item.id}
+                  renderItem={() => <FlatHorScrolLoading />}
+                />
+              </ScrollView>
+            ) : (
+              <ScrollView
+              // horizontal={true}
+              // showsHorizontalScrollIndicator={false}
+              >
+                <FlatList
+                  className="mt-3 w-11/12 mx-auto"
+                  data={offers.slice(0, 4)}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  keyExtractor={(item) => item.id}
+                  renderItem={({ item }) => (
+                    <FlatHorScrol
+                      name={item?.name}
+                      imgsrc={item?.imgsrc}
+                      price={item?.price}
+                    />
+                  )}
+                />
+              </ScrollView>
+            )}
+          </> */}
+          <ScrollView
+            className="mt-3 w-11/12 mx-auto"
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          >
+            {!isLoading ? (
+              offers
+                .slice(0.3)
+                .map((item) => (
                   <FlatHorScrol
                     name={item?.name}
                     imgsrc={item?.imgsrc}
                     price={item?.price}
                   />
-                )}
-              />
-            </ScrollView>
-          )}
-
+                ))
+            ) : (
+              <>
+                <FlatHorScrolLoading />
+                <FlatHorScrolLoading />
+                <FlatHorScrolLoading />
+              </>
+            )}
+          </ScrollView>
           {!isLoading && cart.length !== 0 && <Hr />}
           {!isLoading && cart.length !== 0 && <Dues />}
         </ScrollView>

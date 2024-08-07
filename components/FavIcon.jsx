@@ -8,73 +8,149 @@ import {
 import React, { useEffect, useRef } from "react";
 import { icons } from "../constants";
 import { useState } from "react";
-import { checkFav } from "../lib/supabase";
+import { checkFav, deleteFav, insertFav } from "../lib/supabase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FavIcon = ({ addStyle, size, allData, id }) => {
-  const opacity = useRef(new Animated.Value(1)).current;
-  const [fav, setFav] = useState([]);
+  const [fav, setFav] = useState();
   const [isLoading, setIsLoading] = useState();
-  useEffect(() => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(opacity, {
-          toValue: 0.4,
-          duration: 500,
-          useNativeDriver: true,
-        }),
-        Animated.timing(opacity, {
-          toValue: 1,
-          duration: 500,
-          useNativeDriver: true,
-        }),
-      ])
-    ).start();
-  }, [opacity]);
+  const opacity = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    async function fetchCheck() {
-      setIsLoading(true);
-      const fav = await checkFav(id);
-      setIsLoading(false);
-      setFav(fav);
-    }
+    Animated.sequence([
+      Animated.timing(opacity, {
+        toValue: 0.15,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [opacity]);
+  async function fetchCheck() {
+    setIsLoading(true);
+    const fav = await checkFav(id);
+    setIsLoading(false);
+    setFav(fav);
+  }
+  useEffect(() => {
     fetchCheck();
   }, []);
-  // async function insertFavourite() {
-  //   setIsLoading(true);
-  //   await insertFav({ ...allData });
-  //   setIsLoading(false);
-  // }
-  console.log(fav);
-  return (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      // onPress={insertFavourite}
-      className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute border-2 border-gray-300 rounded-full`}
-    >
-      {isLoading ? (
-        <Animated.View style={[{ opacity }]}>
+  async function insertFavourite() {
+    if (isLoading) return;
+    setIsLoading(true);
+    await insertFav({
+      name: allData.name,
+      price: allData.price,
+      category: allData.category,
+      discount: allData.discount,
+      imgsrc: allData.imgsrc,
+      id: id,
+    });
+    fetchCheck();
+  }
+  async function deleteFavourite() {
+    if (isLoading) return;
+    setIsLoading(true);
+    await deleteFav(id);
+    fetchCheck();
+  }
+  if (fav)
+    return (
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={deleteFavourite}
+        className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute border-2 border-gray-300 rounded-full`}
+      >
+        {isLoading ? (
+          <Animated.Image
+            style={[{ opacity }]}
+            source={icons.hurtgray}
+            className="w-full h-full"
+            resizeMode="contain"
+          />
+        ) : (
+          <Image
+            source={icons.favouriteFull}
+            className="w-full h-full"
+            resizeMode="contain"
+          />
+        )}
+      </TouchableOpacity>
+    );
+  if (!fav)
+    return (
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={insertFavourite}
+        className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute border-2 border-gray-300 rounded-full`}
+      >
+        {isLoading ? (
+          <Image
+            source={icons.hurtgray}
+            className="w-full h-full"
+            resizeMode="contain"
+          />
+        ) : (
           <Image
             source={icons.favourite}
             className="w-full h-full"
             resizeMode="contain"
           />
-        </Animated.View>
-      ) : fav ? (
-        <Image
-          source={icons.favouriteFull}
-          className="w-full h-full"
-          resizeMode="contain"
-        />
-      ) : (
-        <Image
-          source={icons.favourite}
-          className="w-full h-full"
-          resizeMode="contain"
-        />
-      )}
-    </TouchableOpacity>
-  );
+        )}
+      </TouchableOpacity>
+    );
+  // if (isLoading) {
+  //   <View
+  //     className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute border-2 border-gray-300 rounded-full`}
+  //   >
+  //     <Image
+  //       source={icons.hurtgray}
+  //       className="w-full h-full"
+  //       resizeMode="contain"
+  //     />
+  //   </View>;
+  // }
+  // return (
+  //   <TouchableOpacity
+  //     activeOpacity={0.7}
+  //     onPress={insertFavourite}
+  //     className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute border-2 border-gray-300 rounded-full`}
+  //   >
+  //     {isLoading ? (
+  //       <View>
+  //         {isLoading ? (
+  //           <Image
+  //             source={icons.hurtgray}
+  //             className="w-full h-full"
+  //             resizeMode="contain"
+  //           />
+  //         ) : (
+  //           <Image
+  //             source={icons.favourite}
+  //             className="w-full h-full"
+  //             resizeMode="contain"
+  //           />
+  //         )}
+  //       </View>
+  //     ) : fav ? (
+  //       <Image
+  //         source={icons.favouriteFull}
+  //         className="w-full h-full"
+  //         resizeMode="contain"
+  //       />
+  //     ) : (
+  //       <Image
+  //         source={icons.favourite}
+  //         className="w-full h-full"
+  //         resizeMode="contain"
+  //       />
+  //     )}
+  //   </TouchableOpacity>
+  // );
 };
 
 export default FavIcon;

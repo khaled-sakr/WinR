@@ -1,5 +1,5 @@
 import { FlatList, ScrollView, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TitleWithLine from "../../../components/TitleWithLine";
 import SearchBar from "../../../components/SearchBar";
@@ -13,6 +13,7 @@ import ProductCurd from "../../../components/ProductCurd";
 import { getProducts } from "../../../lib/supabase";
 import ProductCurdLoading from "../../../components/loading/ProductCurdLoading";
 import FlatHorScrolLoading from "../../../components/loading/FlatHorScrolLoading";
+import { useFocusEffect } from "expo-router";
 
 const womenCat = [
   {
@@ -40,15 +41,17 @@ const womenCat = [
 const Women = () => {
   const [womenProducts, setWomenProducts] = useState([]);
   const [isLoading, setIsLoading] = useState();
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      const data = await getProducts("section", "women");
-      setIsLoading(false);
-      setWomenProducts(data);
-    }
-    fetchData();
-  }, []);
+  async function fetchData() {
+    setIsLoading(true);
+    const data = await getProducts("section", "women");
+    setIsLoading(false);
+    setWomenProducts(data);
+  }
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
   console.log(womenProducts.map((item) => item.id));
   return (
     <SafeAreaView>

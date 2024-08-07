@@ -1,10 +1,11 @@
-import { Button, TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
 import React, { useState } from "react";
 import { Image } from "react-native";
 import { router } from "expo-router";
 import CustomButton from "./CustomButton";
 import DropDown from "./DropDown";
 import { icons } from "../constants";
+import { deleteFav } from "../lib/supabase";
 const numberOfOptions = [
   { title: "1", value: 1 },
   { title: "2", value: 2 },
@@ -25,6 +26,13 @@ const ProductCart = ({
   cartData,
 }) => {
   const [quantity, setQuantity] = useState();
+  const [isLoading, setIsLoading] = useState();
+  async function deleteFavourite() {
+    setIsLoading(true);
+    await deleteFav(favData.id);
+    setIsLoading(false);
+    router.replace("favourite");
+  }
   return (
     <View>
       <View
@@ -32,13 +40,13 @@ const ProductCart = ({
           addStyle ? addStyle : "my-4"
         } ${overlay && "opacity-40"} `}
       >
-        <View className="w-5/12">
+        <View className="w-5/12 ">
           <Image
             source={{ uri: favData?.imgsrc || cartData?.imgsrc }}
             className="w-[137px] h-[174px] rounded-md"
           />
         </View>
-        <View className="flex-1 ml-3">
+        <View className="flex-1 ml-3 ">
           <Text className="text-[20px] text-slate-500 font-semibold">
             {favData?.name || "American Eagle"}
           </Text>
@@ -78,16 +86,24 @@ const ProductCart = ({
               </Text>
             </>
           ) : (
-            <>
+            <View className=" pt-6 w-7/12 space-x-2 justify-between flex flex-row">
               <CustomButton
                 onPress={() => router.push("/products/1")}
                 fav
                 title="Buy"
                 size="half"
                 type="finalButtoms"
-                addStyle="mt-6 "
+                addStyle=""
               />
-            </>
+              <CustomButton
+                onPress={() => deleteFavourite()}
+                fav
+                cancel
+                title={isLoading ? "Load..." : " Remove"}
+                size="half"
+                type="startButtoms"
+              />
+            </View>
           )}
           {!favourite && (
             <View className="flex-row">

@@ -1,5 +1,5 @@
 import { Image, ScrollView, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProductCart from "../components/ProductCart";
 import HeadTitle from "../components/HeadTitle";
@@ -7,20 +7,22 @@ import { icons } from "../constants";
 import Hr from "../components/Hr";
 import { getFavourite } from "../lib/supabase";
 import ProductCartLoading from "../components/loading/ProductCartLoading";
+import { useFocusEffect } from "expo-router";
 
 const Favourite = () => {
   const [favourite, setFavourite] = useState([]);
   const [isLoading, setIsLoading] = useState();
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      const favourites = await getFavourite();
-      setIsLoading(false);
-      setFavourite(favourites);
-    }
-    fetchData();
-  }, []);
-
+  async function fetchData() {
+    setIsLoading(true);
+    const favourites = await getFavourite();
+    setIsLoading(false);
+    setFavourite(favourites);
+  }
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
   return (
     <SafeAreaView>
       <ScrollView>
@@ -42,7 +44,7 @@ const Favourite = () => {
               </View>
             ))
           )}
-          {favourite.length === 0 && !isLoading && (
+          {!isLoading && favourite.length === 0 && (
             <>
               <Image
                 source={icons.alert}

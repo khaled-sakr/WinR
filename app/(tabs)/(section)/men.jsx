@@ -1,5 +1,5 @@
 import { ScrollView, View, FlatList, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeadTitle from "../../../components/HeadTitle";
 import { icons, images } from "../../../constants";
@@ -10,22 +10,24 @@ import BoldTitle from "../../../components/BoldTitle";
 import SquareText from "../../../components/SquareText";
 import FlatHorScrol from "../../../components/FlatHorScrol";
 import ProductCurd from "../../../components/ProductCurd";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import { getProducts } from "../../../lib/supabase";
 import FlatHorScrolLoading from "../../../components/loading/FlatHorScrolLoading";
 import ProductCurdLoading from "../../../components/loading/ProductCurdLoading";
 const Men = () => {
   const [menProducts, setMenProducts] = useState([]);
   const [isLoading, setIsLoading] = useState();
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      const data = await getProducts("section", "men");
-      setIsLoading(false);
-      setMenProducts(data);
-    }
-    fetchData();
-  }, []);
+  async function fetchData() {
+    setIsLoading(true);
+    const data = await getProducts("section", "men");
+    setIsLoading(false);
+    setMenProducts(data);
+  }
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
   return (
     <SafeAreaView>
       <ScrollView>
