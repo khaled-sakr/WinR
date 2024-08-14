@@ -1,19 +1,12 @@
-import {
-  Image,
-  ScrollView,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import React, { useEffect, useState } from "react";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeadTitle from "../../components/HeadTitle";
-import { icons, images } from "../../constants";
+import { icons } from "../../constants";
 import SearchBar from "../../components/SearchBar";
 import FlatHorScrol from "../../components/FlatHorScrol";
 import BoldTitle from "../../components/BoldTitle";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import Hr from "../../components/Hr";
 import ProductCart from "../../components/ProductCart";
 import Dues from "../../components/Dues";
@@ -23,53 +16,59 @@ import ProductCartLoading from "../../components/loading/ProductCartLoading";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const [rerender, setRerender] = useState();
   const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState();
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      const cart = await getCart();
-      const offers = await getProducts("section", "men");
-      setCart(cart);
-      setOffers(offers);
-      setIsLoading(false);
+  const [sum, setSum] = useState();
+  async function fetchData(loading) {
+    {
+      loading && setIsLoading(true);
     }
-    fetchData();
-  }, []);
-  if (cart.length === 0 && !isLoading)
-    return (
-      <>
-        <SafeAreaView>
-          <ScrollView>
-            <HeadTitle
-              titleLeft={`0 item`}
-              srcIconRight={icons.favourite}
-              srcIconMiddle={icons.winr}
-            />
-            <SearchBar />
-            <View className="w-11/12 ">
-              <Image
-                source={icons.emptyCart}
-                resizeMode="contain"
-                className="w-8/12 m-auto h-96 "
-              />
-              <Text className="text-2xl text-center ml-10 font-medium">
-                NO ITEM IN CART
-              </Text>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </>
+    const cart = await getCart();
+    const data = await getProducts("section", "men");
+    setSum(
+      cart?.reduce(
+        (n, { price, quantity_product, discount }) =>
+          n + (price - price * (discount / 100)) * quantity_product,
+        0
+      )
     );
+    console.log(sum);
+    setCart(
+      cart?.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1;
+        }
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      })
+    );
+    setOffers(data);
+    {
+      loading && setIsLoading(false);
+    }
+  }
+  useFocusEffect(
+    useCallback(() => {
+      fetchData(true);
+    }, [])
+  );
+  useEffect(() => {
+    fetchData();
+  }, [rerender]);
 
   return (
     <View>
-      {!isLoading && (
+      {!isLoading && cart.length !== 0 && (
         <View className="bg-[#F2F4F7] z-10 justify-between px-6 pt-2.5 absolute bottom-0 h-[100px] w-full rounded-t-2xl border-t-[1px] border-r-[0.5px] border-l-[0.5px] border-slate-300">
           <View className="h-[30px] items-center flex-row justify-between">
-            <Text className="text-lg text-slate-400 font-semibold">1 Item</Text>
+            <Text className="text-lg text-slate-400 font-semibold">
+              {cart.length} Item
+            </Text>
             <Text className="text-lg text-slate-700 font-semibold">
-              EGP 150
+              EGP {sum + 20}
             </Text>
           </View>
           <TouchableOpacity
@@ -94,96 +93,68 @@ const Cart = () => {
             srcIconMiddle={icons.winr}
           />
           <SearchBar />
-
-          {/* {isLoading ? (
-            <FlatList
-              className="mt-3 w-full mx-auto"
-              data={[{ id: 1 }]}
-              keyExtractor={(item) => item.id}
-              renderItem={() => <ProductCartLoading cart />}
-            />
+          {!isLoading && cart.length === 0 ? (
+            <View className="w-11/12 ">
+              <Image
+                source={icons.emptyCart}
+                resizeMode="contain"
+                className="w-8/12 m-auto h-96 "
+              />
+              <Text className="text-2xl text-center ml-10 font-medium">
+                NO ITEM IN CART
+              </Text>
+            </View>
           ) : (
-            <FlatList
-              className="mt-3 w-11/12 mx-auto"
-              data={cart}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => <ProductCart cartData={item} cart />}
-            />
-          )} */}
-          <View className="mt-3 space-y-5 w-11/12 mx-auto">
-            {!isLoading ? (
-              cart.map((item) => <ProductCart cartData={item} cart />)
-            ) : (
-              <ProductCartLoading cart />
-            )}
-          </View>
-          <Hr />
-          <BoldTitle
-            title="We think you might like these"
-            addStyle="w-11/12 mt-2 text-base mx-auto  text-secondary"
-          />
-          {/* <>
-            {isLoading ? (
+            <>
+              <View className="mt-3 space-y-5 w-11/12 mx-auto">
+                {!isLoading ? (
+                  cart.map((item) => (
+                    <ProductCart
+                      key={item.id}
+                      cartData={item}
+                      cart
+                      setRerender={setRerender}
+                      rerender={rerender}
+                    />
+                  ))
+                ) : (
+                  <ProductCartLoading cart />
+                )}
+              </View>
+              <Hr />
+              <BoldTitle
+                title="We think you might like these"
+                addStyle="w-11/12 mt-2 text-base mx-auto  text-secondary"
+              />
               <ScrollView
-                horizontal={true}
+                className="mt-3 w-11/12 mx-auto"
+                horizontal
                 showsHorizontalScrollIndicator={false}
               >
-                <FlatList
-                  horizontal
-                  className="mt-6 w-11/12 mx-auto"
-                  data={[{ id: 1 }, { id: 2 }]}
-                  showsHorizontalScrollIndicator={false}
-                  keyExtractor={(item) => item.id}
-                  renderItem={() => <FlatHorScrolLoading />}
-                />
+                {!isLoading ? (
+                  offers
+                    .slice(0.3)
+                    .map((item) => (
+                      <FlatHorScrol
+                        key={item.id}
+                        id={item.id}
+                        name={item.name}
+                        imgsrc={item.imgsrc}
+                        price={item.price}
+                      />
+                    ))
+                ) : (
+                  <>
+                    <FlatHorScrolLoading />
+                    <FlatHorScrolLoading />
+                    <FlatHorScrolLoading />
+                  </>
+                )}
               </ScrollView>
-            ) : (
-              <ScrollView
-              // horizontal={true}
-              // showsHorizontalScrollIndicator={false}
-              >
-                <FlatList
-                  className="mt-3 w-11/12 mx-auto"
-                  data={offers.slice(0, 4)}
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  keyExtractor={(item) => item.id}
-                  renderItem={({ item }) => (
-                    <FlatHorScrol
-                      name={item?.name}
-                      imgsrc={item?.imgsrc}
-                      price={item?.price}
-                    />
-                  )}
-                />
-              </ScrollView>
-            )}
-          </> */}
-          <ScrollView
-            className="mt-3 w-11/12 mx-auto"
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          >
-            {!isLoading ? (
-              offers
-                .slice(0.3)
-                .map((item) => (
-                  <FlatHorScrol
-                    name={item?.name}
-                    imgsrc={item?.imgsrc}
-                    price={item?.price}
-                  />
-                ))
-            ) : (
-              <>
-                <FlatHorScrolLoading />
-                <FlatHorScrolLoading />
-                <FlatHorScrolLoading />
-              </>
-            )}
-          </ScrollView>
-          {!isLoading && cart.length !== 0 && <Hr />}
-          {!isLoading && cart.length !== 0 && <Dues />}
+              {!isLoading && cart.length !== 0 && <Hr />}
+              {!isLoading && cart.length !== 0 && <Dues sum={sum} />}
+            </>
+          )}
         </ScrollView>
       </SafeAreaView>
     </View>

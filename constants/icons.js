@@ -46,6 +46,9 @@ import alert from "../assets/icons/alert.png";
 import emptyCart from "../assets/icons/emptyCart.png";
 import hurtgray from "../assets/icons/hurtgray.png";
 import x from "../assets/icons/x.png";
+import whiteHurt from "../assets/icons/whiteHurt.png";
+import clock from "../assets/icons/clock.png";
+import deliveryTruck from "../assets/icons/deliveryTruck.gif";
 
 export default {
   play,
@@ -96,4 +99,7 @@ export default {
   emptyCart,
   hurtgray,
   x,
+  whiteHurt,
+  clock,
+  deliveryTruck,
 };

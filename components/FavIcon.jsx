@@ -11,7 +11,7 @@ import { useState } from "react";
 import { checkFav, deleteFav, insertFav } from "../lib/supabase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const FavIcon = ({ addStyle, size, allData, id }) => {
+const FavIcon = ({ addStyle, size, allData, id, children }) => {
   const [fav, setFav] = useState();
   const [isLoading, setIsLoading] = useState();
   const opacity = useRef(new Animated.Value(1)).current;
@@ -31,6 +31,7 @@ const FavIcon = ({ addStyle, size, allData, id }) => {
     ]).start();
   }, [opacity]);
   async function fetchCheck() {
+    if (isLoading) return;
     setIsLoading(true);
     const fav = await checkFav(id);
     setIsLoading(false);
@@ -53,7 +54,7 @@ const FavIcon = ({ addStyle, size, allData, id }) => {
     fetchCheck();
   }
   async function deleteFavourite() {
-    if (isLoading) return;
+    // if (isLoading) return;
     setIsLoading(true);
     await deleteFav(id);
     fetchCheck();
@@ -63,7 +64,9 @@ const FavIcon = ({ addStyle, size, allData, id }) => {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={deleteFavourite}
-        className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute border-2 border-gray-300 rounded-full`}
+        className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute ${
+          !children && "border-2 border-gray-300"
+        } rounded-full`}
       >
         {isLoading ? (
           <Animated.Image
@@ -86,7 +89,9 @@ const FavIcon = ({ addStyle, size, allData, id }) => {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={insertFavourite}
-        className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute border-2 border-gray-300 rounded-full`}
+        className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute ${
+          !children && "border-2 border-gray-300"
+        } rounded-full`}
       >
         {isLoading ? (
           <Image
@@ -96,7 +101,7 @@ const FavIcon = ({ addStyle, size, allData, id }) => {
           />
         ) : (
           <Image
-            source={icons.favourite}
+            source={children ? icons.whiteHurt : icons.favourite}
             className="w-full h-full"
             resizeMode="contain"
           />

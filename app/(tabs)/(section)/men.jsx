@@ -35,6 +35,7 @@ const Men = () => {
           srcIconLeft={icons.chat}
           srcIconRight={icons.favourite}
           srcIconMiddle={icons.men}
+          rerender={isLoading}
         />
         <SearchBar />
         <TitleWithLine
@@ -97,8 +98,9 @@ const Men = () => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <FlatHorScrol
+                id={item.id}
                 imgsrc={item.imgsrc}
-                title={item.name}
+                name={item.name}
                 price={item.price}
               />
             )}

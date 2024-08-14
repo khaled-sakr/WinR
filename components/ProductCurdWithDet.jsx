@@ -2,26 +2,28 @@ import { Image, TouchableOpacity, Text, View } from "react-native";
 import React from "react";
 import { icons, images } from "../constants";
 import { useState } from "react";
+import FavIcon from "./FavIcon";
+import { router } from "expo-router";
 
-const ProductCurdWithDet = ({ imgsrc, name, price, discount }) => {
+const ProductCurdWithDet = ({ allData, imgsrc, name, price, discount }) => {
   const [fav, setFav] = useState(true);
   const toggleFavorite = () => {
     setFav((prev) => !prev);
   };
   return (
     <View className="mx-auto w-[157px] h-[230px] relative">
-      <View>
+      <View className="relative">
         <Image
           source={{ uri: imgsrc }}
           className="w-[155px] h-[172.2px] rounded-md"
           resizeMode="cover"
         />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           activeOpacity={0.7}
           onPress={toggleFavorite}
           className="w-[36px] h-[36px] pb-2 pt-2.5 top-1 right-1 absolute bg-white rounded-full"
-        >
-          {fav ? (
+        > */}
+        {/* {fav ? (
             <Image
               source={icons.favourite}
               className="w-full h-full"
@@ -33,8 +35,14 @@ const ProductCurdWithDet = ({ imgsrc, name, price, discount }) => {
               className="w-full h-full"
               resizeMode="contain"
             />
-          )}
-        </TouchableOpacity>
+          )} */}
+        <FavIcon
+          allData={allData}
+          size="w-[30px] h-[30px]"
+          id={allData.id}
+          children
+        />
+        {/* </TouchableOpacity> */}
       </View>
       <View className="flex-row w-full flex">
         <View className="flex w-8/12 flex-col px-0">
@@ -50,7 +58,10 @@ const ProductCurdWithDet = ({ imgsrc, name, price, discount }) => {
             <Text className="text-green-400">{discount}% OFF</Text>
           </View>
         </View>
-        <TouchableOpacity className="w-5/12">
+        <TouchableOpacity
+          onPress={() => router.push(`/products/${allData.id}`)}
+          className="w-5/12"
+        >
           <Image
             source={icons.AddShopping}
             className="m-auto"

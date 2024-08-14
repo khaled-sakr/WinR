@@ -107,6 +107,7 @@ const Women = () => {
                 imgsrc={item.imgsrc}
                 name={item.name}
                 price={item.price}
+                id={item.id}
               />
             )}
           />

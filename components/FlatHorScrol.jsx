@@ -2,11 +2,11 @@ import { TouchableOpacity, Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { router } from "expo-router";
 
-const FlatHorScrol = ({ imgsrc, name, price, blur }) => {
+const FlatHorScrol = ({ imgsrc, name, price, id, blur }) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        router.push(`products/${3}`);
+        router.push(`products/${id}`);
       }}
       className="w-[174px] h-[242px] mr-4"
     >

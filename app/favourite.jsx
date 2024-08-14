@@ -12,6 +12,7 @@ import { useFocusEffect } from "expo-router";
 const Favourite = () => {
   const [favourite, setFavourite] = useState([]);
   const [isLoading, setIsLoading] = useState();
+  const [rerender, setRerender] = useState();
   async function fetchData() {
     setIsLoading(true);
     const favourites = await getFavourite();
@@ -23,6 +24,9 @@ const Favourite = () => {
       fetchData();
     }, [])
   );
+  useEffect(() => {
+    fetchData();
+  }, [rerender]);
   return (
     <SafeAreaView>
       <ScrollView>
@@ -37,10 +41,16 @@ const Favourite = () => {
               <ProductCartLoading />
             </>
           ) : (
-            favourite.map((favouriteItem) => (
-              <View key={favouriteItem.id}>
-                <ProductCart favourite favData={favouriteItem} />
-                {favourite[favourite.length - 1] !== favouriteItem && <Hr />}
+            favourite.map((item) => (
+              <View key={item.id}>
+                <ProductCart
+                  rerender={rerender}
+                  setRerender={setRerender}
+                  key={item.id}
+                  favourite
+                  favData={item}
+                />
+                {favourite[favourite.length - 1] !== item && <Hr />}
               </View>
             ))
           )}

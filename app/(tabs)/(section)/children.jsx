@@ -79,6 +79,7 @@ const Children = () => {
                 data={childrenProducts}
                 renderItem={({ item }) => (
                   <ProductCurdWithDet
+                    allData={item}
                     imgsrc={item?.imgsrc}
                     name={item?.name}
                     price={item?.price}

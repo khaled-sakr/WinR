@@ -1,11 +1,18 @@
 import { TouchableOpacity, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Image } from "react-native";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import CustomButton from "./CustomButton";
 import DropDown from "./DropDown";
 import { icons } from "../constants";
-import { deleteFav } from "../lib/supabase";
+import {
+  changeQuantity,
+  deleteCart,
+  deleteFav,
+  getCart,
+} from "../lib/supabase";
+import FavIcon from "./FavIcon";
+import { Animated } from "react-native";
 const numberOfOptions = [
   { title: "1", value: 1 },
   { title: "2", value: 2 },
@@ -24,15 +31,54 @@ const ProductCart = ({
   favData,
   cart,
   cartData,
+  rerender,
+  setRerender,
+  checkout,
 }) => {
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState(cartData?.quantity_product);
   const [isLoading, setIsLoading] = useState();
-  async function deleteFavourite() {
+  const [isChanging, setIsChanging] = useState();
+  // const opacity = useRef(new Animated.Value(1)).current;
+  const rotation = useRef(new Animated.Value(0)).current;
+  async function deleteCartFun() {
+    setIsLoading(true);
+    await deleteCart(cartData.id);
+    setIsLoading(false);
+    setRerender(!rerender);
+  }
+  useEffect(() => {
+    async function changeQuantityFun() {
+      setIsChanging(true);
+      await changeQuantity(cartData?.id, quantity);
+      setIsChanging(false);
+      setRerender(!rerender);
+    }
+    changeQuantityFun();
+  }, [quantity]);
+  async function deleteFavFun() {
     setIsLoading(true);
     await deleteFav(favData.id);
     setIsLoading(false);
-    router.replace("favourite");
+    setRerender(!rerender);
   }
+
+  useEffect(() => {
+    const startRotation = () => {
+      Animated.loop(
+        Animated.timing(rotation, {
+          toValue: 1,
+          duration: 1500, // Adjust duration for rotation speed
+          useNativeDriver: true,
+        })
+      ).start();
+    };
+    startRotation();
+  }, [rotation]);
+
+  const rotateInterpolate = rotation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "360deg"],
+  });
   return (
     <View>
       <View
@@ -44,6 +90,7 @@ const ProductCart = ({
           <Image
             source={{ uri: favData?.imgsrc || cartData?.imgsrc }}
             className="w-[137px] h-[174px] rounded-md"
+            resizeMode="cover"
           />
         </View>
         <View className="flex-1 ml-3 ">
@@ -51,7 +98,12 @@ const ProductCart = ({
             {favData?.name || "American Eagle"}
           </Text>
           <Text className="text-lg text-slate-400 font-semibold">
-            {favData?.category || cartData?.name}
+            {favData?.category || cartData?.name}{" "}
+            {checkout && (
+              <Text className=" border text-green-500 px-2 text-sm">
+                "{cartData.size}" "{cartData.quantity_product} pcs"
+              </Text>
+            )}
           </Text>
           <Text className="text-sm text-slate-500 font-semibold">
             EGP{" "}
@@ -88,7 +140,9 @@ const ProductCart = ({
           ) : (
             <View className=" pt-6 w-7/12 space-x-2 justify-between flex flex-row">
               <CustomButton
-                onPress={() => router.push("/products/1")}
+                onPress={() =>
+                  router.push(`/products/${favData?.id || cartData?.id}`)
+                }
                 fav
                 title="Buy"
                 size="half"
@@ -96,10 +150,12 @@ const ProductCart = ({
                 addStyle=""
               />
               <CustomButton
-                onPress={() => deleteFavourite()}
+                onPress={() => deleteFavFun()}
+                animation
+                isLoading={isLoading}
                 fav
                 cancel
-                title={isLoading ? "Load..." : " Remove"}
+                title={isLoading ? "Load" : "Remove"}
                 size="half"
                 type="startButtoms"
               />
@@ -122,32 +178,44 @@ const ProductCart = ({
           <View className="w-5/12 flex-row">
             <View className="w-5/12  border-[0.75px] border-slate-400 rounded-md relative">
               <DropDown
-                placeholder="1"
+                placeholder={quantity || cartData.quantity_product}
                 options={numberOfOptions}
                 setValue={setQuantity}
-                addStyle="-top-2 absolute"
+                isChanging={isChanging}
+                addStyle={`-top-2 absolute`}
               />
             </View>
             <TouchableOpacity
               activeOpacity={0.5}
+              onPress={() => deleteCartFun()}
               className="rounded-md w-8/12 ml-2 py-2 flex-row border-[0.75px] border-slate-400 px-3"
             >
-              <Image source={icons.remove} />
-              <Text className="text-slate-500 ">Remove</Text>
+              {isLoading ? (
+                <Animated.Image
+                  style={[
+                    {
+                      transform: [{ rotate: rotateInterpolate }],
+                    },
+                  ]}
+                  className="w-4 mr-1 my-auto h-4"
+                  source={isLoading ? icons.clock : icons.remove}
+                />
+              ) : (
+                <Image className="w-5 h-5" source={icons.remove} />
+              )}
+              <Text className="text-slate-500 ">
+                {isLoading ? "loading" : "Remove"}
+              </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            className="w-4/12 h-full rounded-md ml-2 py-2 flex-row border-[0.75px] border-slate-400 px-3"
-          >
-            <Image
-              source={icons.favourite}
-              className="w-[16px] h-[14px] mt-1 mr-2"
+          <View className="w-[13.5%] h-full rounded-md ml-2 py-2 border-[0.75px] border-slate-400 px-3">
+            <FavIcon
+              allData={cartData}
+              id={cartData.id}
+              children
+              size="absolute  right-0 w-[30px] h-[30px] mt-1 mr-2"
             />
-            <Text className="text-slate-500 text-xs mt-[0.75px]">
-              Move To Fav
-            </Text>
-          </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>

@@ -1,45 +1,49 @@
-import { Image, ScrollView ,Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { icons } from '../../constants'
-import HeadTitle from '../../components/HeadTitle'
-import ProductOrders from '../../components/productOrders'
-import { router } from 'expo-router'
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { icons } from "../../constants";
+import HeadTitle from "../../components/HeadTitle";
+import ProductOrders from "../../components/ProductOrders";
+import { router } from "expo-router";
+import { getOrder } from "../../lib/supabase";
 
 const Orders = () => {
+  const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState();
+
+  async function fetchData() {
+    setIsLoading(true);
+
+    const orders = await getOrder();
+
+    setOrders(
+      orders.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1;
+        }
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      })
+    );
+    setIsLoading(false);
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <SafeAreaView>
-    <ScrollView>
-    <HeadTitle srcIconLeft={icons.back} middleText='Orders'/>
-    <View>
-    <View className='flex-row mt-6 w-11/12 mx-auto justify-between'>
-    <View className='w-6/12 '>
-      <Text className='text-lg font-semibold'>Orders ***************</Text>
-      <Text className='font-[400] text-slate-500'>Place On Aug 22, 2023</Text>
-    </View>
-    <TouchableOpacity onPress={()=>router.push(`/orders/${1}`)} className='w-[30%] my-auto flex-row'>
-      <Text className='text-base font-semibold text-[#2E1CFF]'>View Details</Text>
-      <Image source={icons.rightarrow} className='my-auto  ml-2'/>
-    </TouchableOpacity>
-    </View>
-    <ProductOrders title='CANCELED'/>
-    </View>
-    <View>
-    <View className='flex-row mt-6 w-11/12 mx-auto justify-between'>
-    <View className='w-6/12 '>
-      <Text className='text-lg font-semibold'>Orders ***************</Text>
-      <Text className='font-[400] text-slate-500'>Place On Aug 22, 2023</Text>
-    </View>
-    <TouchableOpacity onPress={()=>router.push(`/orders/${3}`)} className='w-[30%] my-auto flex-row'>
-      <Text className='text-base font-semibold text-[#2E1CFF]'>View Details</Text>
-      <Image source={icons.rightarrow} className='my-auto  ml-2'/>
-    </TouchableOpacity>
-    </View>
-    <ProductOrders title='SENT ARRIVED'/>
-    </View>
-    </ScrollView>
+      <ScrollView>
+        <HeadTitle srcIconLeft={icons.back} middleText="Orders" />
+        {orders.map((item) => (
+          <View>
+            <ProductOrders title={item.status} orderData={item} />
+          </View>
+        ))}
+      </ScrollView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Orders
+export default Orders;

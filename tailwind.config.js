@@ -3,7 +3,6 @@ module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      
       colors: {
         primary: "#161622",
         input: "#EEEEEE",
@@ -12,7 +11,7 @@ module.exports = {
         secondary: {
           DEFAULT: "#0D4641",
           100: "#2AC627",
-          200: "#FF8E01",
+          200: "#0D4641",
         },
         black: {
           DEFAULT: "#000",
@@ -33,7 +32,6 @@ module.exports = {
         pextrabold: ["Poppins-ExtraBold", "sans-serif"],
         pblack: ["Poppins-Black", "sans-serif"],
       },
-     
     },
   },
   plugins: [],
