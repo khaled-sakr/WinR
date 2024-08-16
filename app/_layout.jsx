@@ -36,21 +36,21 @@ const RootLayout = () => {
   }
 
   return (
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} /> 
-        <Stack.Screen name="welcome" options={{ headerShown: false }} /> 
-        <Stack.Screen name="favourite" options={{ headerShown: false }} /> 
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="orders/[order]" options={{ headerShown: false }} />
-        <Stack.Screen name="(profile)" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="search/[query]" options={{ headerShown: false }} />
-        <Stack.Screen name="checkout" options={{ headerShown: false }} /> 
-        {/* <Stack.Screen name="address" options={{ headerShown: false }} />  */}
-        {/* <Stack.Screen name="products/[product]" options={{ headerShown: false }} /> */}
-        {/* <Stack.Screen name="(categories)" options={{ headerShown: false }} /> */}
-        {/* <Stack.Screen name="(section)" options={{ headerShown: false }} /> */}
-      </Stack>
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="welcome" options={{ headerShown: false }} />
+      <Stack.Screen name="favourite" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      <Stack.Screen name="orders/[id]" options={{ headerShown: false }} />
+      <Stack.Screen name="(profile)" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="search/[query]" options={{ headerShown: false }} />
+      <Stack.Screen name="checkout" options={{ headerShown: false }} />
+      {/* <Stack.Screen name="address" options={{ headerShown: false }} />  */}
+      {/* <Stack.Screen name="products/[product]" options={{ headerShown: false }} /> */}
+      {/* <Stack.Screen name="(categories)" options={{ headerShown: false }} /> */}
+      {/* <Stack.Screen name="(section)" options={{ headerShown: false }} /> */}
+    </Stack>
   );
 };
 

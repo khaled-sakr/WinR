@@ -47,23 +47,23 @@ const Children = () => {
           <Link href="/categories/shirt">
             <CustomIcon src={images.shirt} title="shirt" />
           </Link>
-          <Link href="/categories/sweat-shirt">
+          <Link href="/categories/sweatshirt">
             <CustomIcon src={images.sweatshirt} title="sweat shirt" />
           </Link>
         </View>
         <View className="w-11/12 h-fit mt-2 flex-row flex justify-between mx-auto ">
-          <Link href="/categories/Fashion">
+          <Link href="/categories/fashion">
             <CustomIcon src={images.fashion} title="Fashion" />
           </Link>
-          <Link href="/categories/Sport">
+          <Link href="/categories/sport">
             <CustomIcon src={images.sport} title="Sport" />
           </Link>
-          <Link href="/categories/Swim-Wear">
+          <Link href="/categories/swimwear">
             <CustomIcon src={images.swimming} title="Swim Wear" />
           </Link>
         </View>
         <TitleWithLine title="SHOP ALL" addStyle="font-[300]" size="w-full" />
-        <View className="w-[100%] flex-row justify-between mx-auto my-100">
+        <View className="w-[100%] flex-row justify-between mx-auto ">
           {isLoading ? (
             [{ id: 1 }, { id: 2 }].map((item) => (
               <ProductCurdWithDetLoading key={item.id} />

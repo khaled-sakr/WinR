@@ -71,7 +71,7 @@ const profile = () => {
             <Text className="my-auto text-white text-center">Edit</Text>
           </TouchableOpacity>
         </View>
-        <TabProfile src={icons.order} title="orders" link="/orders" />
+        <TabProfile src={icons.order} title="orders" link="/orderStation" />
         <View className="w-full h-[1px] bg-slate-300" />
         <TabProfile src={icons.wallet} title="payment" link="/payment" />
         <View className="w-full h-[1px] bg-slate-300" />

@@ -56,22 +56,25 @@ const SignUp = () => {
       setErrors(validationErrors);
     } else {
       setLoading(true);
-      await signUp(
+      const { error } = await signUp(
         form.email,
         form.password,
         form.firstname,
         form.lastname
-      ).then((result) => {
-        if (result.success) {
-          router.replace("/home");
-        } else {
-          setForm(defaultValues);
-          Alert.alert("Error", "Email rate llimit exceeded");
-        }
-      });
-      setLoading(false);
+      );
+      if (error) {
+        setForm(defaultValues);
+        Alert.alert(
+          "Error",
+          "Email rate llimit exceeded , try to log in instead"
+        );
+      } else {
+        router.replace("/home");
+      }
     }
+    setLoading(false);
   };
+
   return (
     <SafeAreaView className="w-full bg-white h-full">
       <Text className="text-5xl text-Font text-center font-bold my-20">

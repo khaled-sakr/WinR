@@ -42,40 +42,51 @@ const numberOfOptions = [
   { title: "9", value: 9 },
 ];
 const ProductId = () => {
-  const { product } = useLocalSearchParams();
-  console.log(product);
+  const { id } = useLocalSearchParams();
+  console.log(id);
   const [thisProduct, setThisProduct] = useState([]);
   const [quantity, setQuantity] = useState();
   const [offers, setOffers] = useState([]);
   const [checkCartState, setCheckCartState] = useState([]);
-  const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const [isLoadingClick, setIsLoadingClick] = useState();
   const [isChanging, setIsChanging] = useState();
   const [isSize, setIsSize] = useState(true);
   const [size, setSize] = useState();
   const [prodNumImg, setprodNumImg] = useState(0);
-  const [render, setRender] = useState(0);
-  // 1. first at all fetch product
-  async function fetchData(loading) {
+
+  // 1. first at all fetch id
+  async function fetchData() {
     setIsLoading(true);
-    const carts = await getProducts("id", product);
+    const carts = await getProducts("id", id);
     const offer = await getProducts("section", carts[0].section);
     setThisProduct(carts[0]);
     setOffers(offer.slice(0, 2));
-
-    setIsLoading(false);
   }
 
   //2. checker function
   async function checkCartFun() {
     setIsLoadingClick(true);
-    const cart = await checkCart(product);
+    const cart = await checkCart(id);
+    setQuantity(cart?.quantity_product || 1);
     setSize(cart?.size);
     console.log("cart", cart);
     cart ? setCheckCartState(cart[0]) : setCheckCartState([]);
     setIsLoadingClick(false);
   }
-  //3. insert and fetch checker
+  // 3.sync function
+  useEffect(() => {
+    setIsLoading(true);
+    async function sycnFunc() {
+      // setQuantity(1);
+      await fetchData(true);
+      await checkCartFun();
+      setIsLoading(false);
+    }
+    setCheckCartState([]);
+    sycnFunc();
+  }, [id]);
+  //4. insert and fetch checker
   async function insertCartFun() {
     if (isLoading || checkCartState?.length !== 0) return;
     setIsLoadingClick(true);
@@ -84,19 +95,10 @@ const ProductId = () => {
       quantity_product: quantity || 1,
       size: size || "M",
     });
-    setIsLoadingClick(false);
     checkCartFun();
+    setIsLoadingClick(false);
   }
-  // useEffect(() => {
-  //   async function sycnFunc() {
-  //     setIsLoading(true);
-  //     setCheckCartState([]);
-  //     await fetchData();
-  //     await checkCartFun();
-  //     setIsLoading(false);
-  //   }
-  //   sycnFunc();
-  // }, []);
+
   useEffect(() => {
     async function changeQuantityFun() {
       setIsChanging(true);
@@ -104,7 +106,6 @@ const ProductId = () => {
         thisProduct?.id,
         checkCartState?.quantity_product || quantity
       );
-      // setSize(checkCartState?.size);
       setIsChanging(false);
     }
     changeQuantityFun();
@@ -114,22 +115,10 @@ const ProductId = () => {
       setIsSize(true);
       await changeSize(thisProduct?.id, checkCartState?.size || size);
       setIsSize(false);
-      // setSize(checkCartState?.size);
     }
     changeSizeFun();
   }, [size]);
-  //4. sync function
-  useEffect(() => {
-    async function sycnFunc() {
-      setQuantity(1);
-      setIsLoading(true);
-      await fetchData(true);
-      await checkCartFun();
-      setIsLoading(false);
-    }
-    setCheckCartState([]);
-    sycnFunc();
-  }, [product]);
+
   // useFocusEffect(
   //   useCallback(() => {
   //     //     // setSize(checkCartState?.size);
@@ -192,13 +181,25 @@ const ProductId = () => {
             <View className="absolute left-0 -top-12 h-8 w-20 bg-gray-300 rounded-md" />
             <View className="mx-auto rounded-xl w-[250px] h-[305px]  bg-gray-300" />
           </Animated.View>
+
           <Animated.View style={[{ opacity }]} className="mx-auto w-11/12 mt-4">
             <View className="h-6 rounded-md w-6/12  bg-gray-300 pt-3" />
             <View className="h-6 rounded-md w-6/12  bg-gray-300 pt-3 my-2" />
             <View className="h-6 rounded-md w-6/12  bg-gray-300 pt-3 " />
           </Animated.View>
-          <ProductCurdLoading />
-          <ProductCurdLoading />
+          <Animated.View
+            style={[{ opacity }]}
+            className="w-11/12 mt-10 mx-auto space-y-3"
+          >
+            <View className="bg-gray-300 font-semibold h-8 w-9/12" />
+            <View className="bg-gray-300 font-semibold h-8 w-9/12" />
+            <View className="bg-gray-300 font-semibold h-8 w-9/12" />
+          </Animated.View>
+          <Hr />
+          <View className="w-11/12 mx-auto mt-4">
+            <ProductCurdLoading />
+            <ProductCurdLoading />
+          </View>
         </ScrollView>
       </SafeAreaView>
     );
@@ -237,7 +238,7 @@ const ProductId = () => {
         </View>
       )}
 
-      <ScrollView className={`relative ${isLoading ? "mb-0" : "mb-[100px]"}`}>
+      <ScrollView className={`relative ${isLoading ? "mb-0" : "mb-[80px]"}`}>
         <HeadTitle
           srcIconLeft={icons.back}
           srcIconRight={icons.favourite}

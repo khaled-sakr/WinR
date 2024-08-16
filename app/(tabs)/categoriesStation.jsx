@@ -16,9 +16,17 @@ const CategoriesStation = () => {
           middle
         />
         <SearchBar />
-        <CategoryCurd src={images.mencategory} title="Fashion Men" />
-        <CategoryCurd src={images.womencategory} title="Fashion Women" />
-        <CategoryCurd src={images.childrencategory} title="Fashion children" />
+        <CategoryCurd src={images.mencategory} title="Fashion Men" type="men" />
+        <CategoryCurd
+          src={images.womencategory}
+          title="Fashion Women"
+          type="women"
+        />
+        <CategoryCurd
+          src={images.childrencategory}
+          title="Fashion children"
+          type="children"
+        />
       </ScrollView>
     </SafeAreaView>
   );

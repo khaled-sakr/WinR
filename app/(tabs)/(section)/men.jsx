@@ -1,5 +1,5 @@
 import { ScrollView, View, FlatList, TouchableOpacity } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeadTitle from "../../../components/HeadTitle";
 import { icons, images } from "../../../constants";
@@ -45,30 +45,26 @@ const Men = () => {
         />
 
         <View className="w-11/12 h-fit mt-4 flex-row flex justify-between mx-auto ">
-          <TouchableOpacity
-            onPress={() => router.push("/categories/[t-shirt]")}
-          >
+          <TouchableOpacity onPress={() => router.push("/categories/t-shirt")}>
             <CustomIcon src={images.tshirt} title="t-shirt" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/categories/shirt")}>
             <CustomIcon src={images.shirt} title="shirt" />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => router.push("/categories/sweat-shirt")}
+            onPress={() => router.push("/categories/sweatshirt")}
           >
             <CustomIcon src={images.sweatshirt} title="sweat shirt" />
           </TouchableOpacity>
         </View>
         <View className="w-11/12 h-fit mt-2 flex-row flex justify-between mx-auto ">
-          <TouchableOpacity onPress={() => router.push("/categories/Fashion")}>
-            <CustomIcon src={images.fashion} title="Fashion" />
+          <TouchableOpacity onPress={() => router.push("/categories/fashion")}>
+            <CustomIcon src={images.fashion} title="fashion" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => router.push("/categories/Sport")}>
+          <TouchableOpacity onPress={() => router.push("/categories/sport")}>
             <CustomIcon src={images.sport} title="Sport" />
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => router.push("/categories/Swim-Wear")}
-          >
+          <TouchableOpacity onPress={() => router.push("/categories/swimwear")}>
             <CustomIcon src={images.swimming} title="Swim Wear" />
           </TouchableOpacity>
         </View>

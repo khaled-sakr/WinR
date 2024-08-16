@@ -3,11 +3,11 @@ import React from "react";
 import { images } from "../constants";
 import { router } from "expo-router";
 
-const CategoryCurd = ({ src, title }) => {
+const CategoryCurd = ({ src, title, type }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={() => router.push("/categories/0")}
+      onPress={() => router.push(`/${type}`)}
       className="w-11/12 mx-auto mt-8"
     >
       <Image

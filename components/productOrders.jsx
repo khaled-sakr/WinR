@@ -5,16 +5,11 @@ import { TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 
 const ProductOrders = ({ title, orderData }) => {
-  // const [date, setDate] = useState();
-  // const regex = /\b(\d{1,2})\b/;
-  // const match = orderData.date.match(regex);
-
-  // if (match) setDate(parseInt(match[1], 10));
-
+  console.log(orderData);
   return (
     <>
-      <View className="flex-row mt-6 w-11/12 mx-auto justify-between">
-        <View className="w-6/12 ">
+      <View className="flex-row mt-4 w-11/12 mx-auto justify-between">
+        <View className="w-6/12">
           <Text className="text-lg font-semibold">Orders ***************</Text>
           <View className="flex h-12 justify-between w-full">
             <Text className="font-[400] text-slate-900">
@@ -26,7 +21,7 @@ const ProductOrders = ({ title, orderData }) => {
           </View>
         </View>
         <TouchableOpacity
-          onPress={() => router.push(`/orders/${orderData.id}`)}
+          onPress={() => router.replace(`/orders/${orderData.id_order}`)}
           className="w-[30%] my-auto flex-row"
         >
           <Text className="text-base font-semibold text-[#2E1CFF]">

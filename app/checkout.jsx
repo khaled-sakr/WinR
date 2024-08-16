@@ -1,11 +1,5 @@
-import {
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  TouchableOpacityBase,
-  View,
-} from "react-native";
-import React, { useCallback, useEffect } from "react";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useCallback, useRef } from "react";
 import HeadTitle from "../components/HeadTitle";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons, images } from "../constants";
@@ -18,6 +12,7 @@ import ProductCart from "../components/ProductCart";
 import { deleteCart, getCart, insertOrder } from "../lib/supabase";
 import ProductCartLoading from "../components/loading/ProductCartLoading";
 import Dues from "../components/Dues";
+import { Animated } from "react-native";
 
 const Checkout = () => {
   const [paymentCard, setPaymentCard] = useState(false);
@@ -26,6 +21,21 @@ const Checkout = () => {
   const [isLoadingClick, setIsLoadingClick] = useState();
   const [rerender, setRerender] = useState();
   const [sum, setSum] = useState();
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
+  const translateX = useRef(new Animated.Value(0)).current;
+
+  const startAnimation = () => {
+    Animated.timing(translateX, {
+      toValue: 250,
+      duration: 3000,
+      useNativeDriver: true,
+    }).start();
+  };
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
   const date = new Date().toISOString().split("T")[0];
   function generateRandomId() {
     return Math.floor(100000000 + Math.random() * 900000000);
@@ -81,11 +91,15 @@ const Checkout = () => {
         payment: paymentCard ? "credit card" : "cash money",
       });
     });
-    cart.map((item) => {
-      deleteCart(item.id);
-    });
-    setIsLoadingClick(false);
-    router.replace("/orders");
+
+    setIsLoadingClick(true);
+    setTimeout(() => {
+      cart.map((item) => {
+        deleteCart(item.id);
+      });
+      router.replace("/orderStation");
+      setIsLoadingClick(false);
+    }, 2800);
   }
   useFocusEffect(
     useCallback(() => {
@@ -97,17 +111,35 @@ const Checkout = () => {
       <View className="bg-[#F2F4F7] z-10 flex-row justify-between p-3 absolute bottom-0 h-[90px] w-full rounded-t-2xl border-t-[0.5px] border-x-[0.5px] border-slate-300">
         <TouchableOpacity
           activeOpacity={0.9}
-          onPress={insertOrderFun}
-          className={`w-11/12 mx-auto shadow-2xl h-full bg-secondary font-semibold rounded-lg flex justify-center`}
+          onPress={() => {
+            startAnimation();
+            insertOrderFun();
+          }}
+          className={`w-11/12 mx-auto shadow-2xl h-full bg-secondary font-semibold rounded-lg flex justify-center ${
+            !isLoadingClick ? "bg-secondary" : "bg-white"
+          }`}
         >
           {isLoadingClick ? (
             <Text className="text-xl text-white mx-auto text-center">
-              loading...
+              arriving...
             </Text>
           ) : (
             <Text className="text-xl text-white mx-auto text-center">
               Place Order
             </Text>
+          )}
+
+          {isLoadingClick && (
+            <Animated.Image
+              style={[
+                {
+                  transform: [{ translateX }],
+                },
+              ]}
+              source={icons.deliveryTruck}
+              resizeMode="contain"
+              className="h-[68px] absolute translate-x-72 bg-transparent w-20 rounded-md"
+            />
           )}
         </TouchableOpacity>
       </View>

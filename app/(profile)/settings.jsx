@@ -60,7 +60,7 @@ const Settings = () => {
     <SafeAreaView>
       <ScrollView>
         <HeadTitle srcIconLeft={icons.back} middleText="settings" />
-        <View className="border w-11/12 mx-auto mt-14 mb-4 rounded-md h-12 border-slate-400">
+        <View className="border w-11/12 mx-auto mt-14 mb-4 rounded-md  h-[52px] border-slate-400">
           <DropDown
             settings
             setValue={setValue}
@@ -69,7 +69,7 @@ const Settings = () => {
             placeholder="Country"
           />
         </View>
-        <View className="border w-11/12 mx-auto my-2 rounded-md h-12 border-slate-400">
+        <View className="border w-11/12 mx-auto my-2 rounded-md h-[52px] border-slate-400">
           <DropDown
             settings
             setValue={setValue}

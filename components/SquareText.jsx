@@ -1,12 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 
-const SquareText = ({title , addstyle}) => {
+const SquareText = ({ id, link, title, addstyle }) => {
   return (
-      <Text className={`rounded-[5px] text-center font-bold  py-2.5 ${addstyle}`}>{title}</Text>
-  )
-}
+    <Text
+      className={` ${
+        link === id ? "bg-secondary text-white" : "text-gray-800 bg-gray-300"
+      }   rounded-[5px] text-center font-bold  py-2.5 ${addstyle} `}
+    >
+      {title}
+    </Text>
+  );
+};
 
-export default SquareText
+export default SquareText;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

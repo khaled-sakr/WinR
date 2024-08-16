@@ -97,7 +97,7 @@ const ProductCart = ({
           <Text className="text-[20px] text-slate-500 font-semibold">
             {favData?.name || "American Eagle"}
           </Text>
-          <Text className="text-lg text-slate-400 font-semibold">
+          <Text className="text-base text-slate-400 font-semibold">
             {favData?.category || cartData?.name}{" "}
             {checkout && (
               <Text className=" border text-green-500 px-2 text-sm">
