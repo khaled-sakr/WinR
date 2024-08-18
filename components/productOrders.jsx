@@ -4,7 +4,7 @@ import { icons, images } from "../constants";
 import { TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 
-const ProductOrders = ({ title, orderData }) => {
+const ProductOrders = ({ title, orderData, blur }) => {
   console.log(orderData);
   return (
     <>
@@ -35,6 +35,7 @@ const ProductOrders = ({ title, orderData }) => {
         <Image
           source={{ uri: orderData.imgsrc }}
           className="w-[137px] h-[174px] rounded-md"
+          blurRadius={blur}
         />
         <View className="flex-1 ml-3">
           <Text className="text-lg text-slate-500 font-semibold">

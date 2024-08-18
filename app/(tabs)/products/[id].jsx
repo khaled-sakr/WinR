@@ -43,6 +43,7 @@ const numberOfOptions = [
 ];
 const ProductId = () => {
   const { id } = useLocalSearchParams();
+  // const pathname=use
   console.log(id);
   const [thisProduct, setThisProduct] = useState([]);
   const [quantity, setQuantity] = useState();
@@ -54,6 +55,13 @@ const ProductId = () => {
   const [isSize, setIsSize] = useState(true);
   const [size, setSize] = useState();
   const [prodNumImg, setprodNumImg] = useState(0);
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setThisProduct([]);
+      };
+    }, [])
+  );
 
   // 1. first at all fetch id
   async function fetchData() {
@@ -78,7 +86,6 @@ const ProductId = () => {
   useEffect(() => {
     setIsLoading(true);
     async function sycnFunc() {
-      // setQuantity(1);
       await fetchData(true);
       await checkCartFun();
       setIsLoading(false);
@@ -86,6 +93,20 @@ const ProductId = () => {
     setCheckCartState([]);
     sycnFunc();
   }, [id]);
+  //////////////////////////////////////////////
+  useFocusEffect(
+    useCallback(() => {
+      setIsLoading(true);
+      async function sycnFunc() {
+        await fetchData(true);
+        await checkCartFun();
+        setIsLoading(false);
+      }
+      setCheckCartState([]);
+      sycnFunc();
+    }, [])
+  );
+
   //4. insert and fetch checker
   async function insertCartFun() {
     if (isLoading || checkCartState?.length !== 0) return;
@@ -119,18 +140,6 @@ const ProductId = () => {
     changeSizeFun();
   }, [size]);
 
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     //     // setSize(checkCartState?.size);
-  //     //     // setQuantity(checkCartState?.quantity_product || quantity || 1);
-  //     //     // setQuantity(checkCartState.quantity_product || quantity || 1);
-  //     //     //     // thisProduct?.quantity && setQuantity(thisProduct?.quantity);
-  //     //     //     // setSize("M");
-  //     //     //     // setQuantity(thisProduct?.quantity);
-  //     //     //     // fetchData(true);
-  //     setQuantity(1);
-  //   }, [])
-  // );
   const opacity = useRef(new Animated.Value(1)).current;
   useEffect(() => {
     Animated.loop(
@@ -260,6 +269,7 @@ const ProductId = () => {
             onScroll={handleScroll}
             renderItem={({ item }) => (
               <ImageProduct
+                blur={thisProduct.section === "women" ? 10 : 0}
                 isLoading={isLoading}
                 src={item.src}
                 title={item.title}
@@ -410,6 +420,7 @@ const ProductId = () => {
           {offers.map((item) => (
             <ProductCurd
               key={item.id}
+              blur={item.section === "women" ? 10 : 0}
               allData={item}
               imgsrc={{ uri: item.imgsrc }}
               name={item.name}

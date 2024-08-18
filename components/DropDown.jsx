@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   dropdownItemStyle: {
-    width: "90%",
+    width: "100%",
     flexDirection: "row",
     paddingHorizontal: 12,
     justifyContent: "center",

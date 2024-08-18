@@ -5,24 +5,39 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { icons, images } from "../constants";
 import { Image } from "react-native";
 import BoldTitle from "../components/BoldTitle";
-import { router, useFocusEffect } from "expo-router";
+import { Redirect, router, useFocusEffect } from "expo-router";
 import Hr from "../components/Hr";
 import { useState } from "react";
 import ProductCart from "../components/ProductCart";
-import { deleteCart, getCart, insertOrder } from "../lib/supabase";
+import {
+  deleteCart,
+  getCards,
+  getCart,
+  getUsers,
+  insertOrder,
+} from "../lib/supabase";
 import ProductCartLoading from "../components/loading/ProductCartLoading";
 import Dues from "../components/Dues";
 import { Animated } from "react-native";
 
 const Checkout = () => {
+  const scrollViewRef = useRef(null);
   const [paymentCard, setPaymentCard] = useState(false);
   const [cart, setCart] = useState([]);
-  const [isLoading, setIsLoading] = useState();
+  const [checkAddress, setCheckAddress] = useState(true);
+  const [checkCard, setCheckCard] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const [isLoadingClick, setIsLoadingClick] = useState();
   const [rerender, setRerender] = useState();
   const [sum, setSum] = useState();
   /////////////////////////////////////////////
   /////////////////////////////////////////////
+  const scrollToAddress = () => {
+    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+  };
+  const scrollToCard = () => {
+    scrollViewRef.current?.scrollTo({ y: 150, animated: true });
+  };
   /////////////////////////////////////////////
   const translateX = useRef(new Animated.Value(0)).current;
 
@@ -30,6 +45,13 @@ const Checkout = () => {
     Animated.timing(translateX, {
       toValue: 250,
       duration: 3000,
+      useNativeDriver: true,
+    }).start();
+  };
+  const endAnimation = () => {
+    Animated.timing(translateX, {
+      toValue: 0,
+      duration: 100,
       useNativeDriver: true,
     }).start();
   };
@@ -54,6 +76,14 @@ const Checkout = () => {
       loading && setIsLoading(true);
     }
     const cart = await getCart();
+    const addressUser = await getUsers();
+    const cardsUser = await getCards();
+    setCheckAddress(addressUser[0].address && addressUser[0].phoneNumber);
+    setCheckCard(
+      cardsUser.filter((item) => item.chosen_card === true).length > 0
+    );
+    console.log("address", checkAddress);
+    console.log("checkCard", checkCard);
     setSum(
       cart.reduce(
         (n, { price, quantity_product, discount }) =>
@@ -78,34 +108,40 @@ const Checkout = () => {
     }
   }
   function insertOrderFun() {
-    cart.map((item) => {
-      const id = generateRandomId();
-      const { dateStart, dateEnd } = formatDateToShort();
-      console.log("dateStart, dateEnd", dateStart, dateEnd);
-      insertOrder({
-        ...item,
-        status: "PENDING",
-        id_order: id,
-        date_order: dateStart,
-        date_arrived: dateEnd,
-        payment: paymentCard ? "credit card" : "cash money",
-      });
-    });
-
-    setIsLoadingClick(true);
-    setTimeout(() => {
+    if (paymentCard ? checkAddress && checkCard : checkAddress) {
       cart.map((item) => {
-        deleteCart(item.id);
+        const id = generateRandomId();
+        const { dateStart, dateEnd } = formatDateToShort();
+        // console.log("dateStart, dateEnd", dateStart, dateEnd);
+        insertOrder({
+          ...item,
+          status: "PENDING",
+          id_order: id,
+          date_order: dateStart,
+          date_arrived: dateEnd,
+          payment: paymentCard ? "credit card" : "cash money",
+        });
       });
-      router.replace("/orderStation");
-      setIsLoadingClick(false);
-    }, 2800);
+
+      setIsLoadingClick(true);
+      setTimeout(() => {
+        cart.map((item) => {
+          deleteCart(item.id);
+        });
+        router.replace("/orderStation");
+        setIsLoadingClick(false);
+        endAnimation();
+      }, 2800);
+    } else {
+      !checkAddress ? scrollToAddress() : scrollToCard();
+    }
   }
   useFocusEffect(
     useCallback(() => {
       fetchData(true);
     }, [])
   );
+  if (!isLoading && cart.length === 0) return <Redirect href="/home" />;
   return (
     <SafeAreaView>
       <View className="bg-[#F2F4F7] z-10 flex-row justify-between p-3 absolute bottom-0 h-[90px] w-full rounded-t-2xl border-t-[0.5px] border-x-[0.5px] border-slate-300">
@@ -144,7 +180,7 @@ const Checkout = () => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView className="relative mb-[90px]">
+      <ScrollView className="relative mb-[90px]" ref={scrollViewRef}>
         <HeadTitle
           srcIconLeft={icons.back}
           srcIconMiddle={icons.checkout}
@@ -157,12 +193,18 @@ const Checkout = () => {
           />
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => router.push("(profile)/address")}
+            onPress={() => {
+              router.push("(profile)/address");
+            }}
             className="relative"
           >
-            <Image source={images.adressblur} className="mx-auto" />
-            <View className="absolute flex-row top-[40%] right-[30%] bg-slate-300/50 rounded-md border border-white px-3 py-2">
-              <Image source={icons.pluscircle} className=" " />
+            <Image source={images.adressblur} className="mx-auto " />
+            <View
+              className={`absolute flex-row top-[40%] right-[30%]  rounded-md border border-white px-3 py-2 ${
+                checkAddress ? "bg-slate-300/50" : "bg-red-500 opacity-80"
+              }`}
+            >
+              <Image source={icons.pluscircle} className="" />
               <Text className="text-lg ml-2 text-white font-bold mb-1">
                 Add Adress
               </Text>
@@ -195,8 +237,12 @@ const Checkout = () => {
             <View className="mx-auto w-full">
               <View className="bg-slate-300 h-[1.5px] mb-1 w-8/12 mx-auto" />
               <TouchableOpacity onPress={() => router.push("payment")}>
-                <Text className="mx-auto text-[17px] mb-3 text-blue-700">
-                  Edit Cards
+                <Text
+                  className={`mx-auto text-[17px]  mb-3 ${
+                    checkCard ? "text-blue-700" : " text-red-700"
+                  } `}
+                >
+                  {checkCard ? "Edit Cards" : "Set One Default"}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -235,6 +281,7 @@ const Checkout = () => {
             cart.map((item) => (
               <ProductCart
                 key={item.id}
+                blur={item.section === "women" ? 10 : 0}
                 cartData={item}
                 rerender={rerender}
                 setRerender={setRerender}

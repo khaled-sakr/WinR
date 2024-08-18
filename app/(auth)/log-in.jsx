@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
 import { router } from "expo-router";
 import TitleWithLine from "../../components/TitleWithLine";
-import { login } from "../../lib/supabase";
+import { insertUser, login } from "../../lib/supabase";
 
 const defaultValues = {
   email: "",

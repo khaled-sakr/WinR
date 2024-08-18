@@ -10,10 +10,10 @@ import React from "react";
 import InputForm from "../../components/InputForm";
 import CustomButton from "../../components/CustomButton";
 import { images } from "../../constants";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import { useState } from "react";
 import TitleWithLine from "../../components/TitleWithLine";
-import { signUp } from "../../lib/supabase";
+import { insertUser, signUp } from "../../lib/supabase";
 const defaultValues = {
   firstname: "",
   lastname: "",
@@ -56,12 +56,13 @@ const SignUp = () => {
       setErrors(validationErrors);
     } else {
       setLoading(true);
-      const { error } = await signUp(
-        form.email,
-        form.password,
-        form.firstname,
-        form.lastname
-      );
+      await insertUser({
+        email: form?.email,
+        password: form?.password,
+        firstname: form?.firstname,
+        lastname: form?.lastname,
+      });
+      const { error } = await signUp(form.email, form.password);
       if (error) {
         setForm(defaultValues);
         Alert.alert(

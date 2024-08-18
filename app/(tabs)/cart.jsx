@@ -110,6 +110,7 @@ const Cart = () => {
                 {!isLoading ? (
                   cart.map((item) => (
                     <ProductCart
+                      blur={item.section === "women" ? 5 : 0}
                       key={item.id}
                       cartData={item}
                       cart
@@ -137,6 +138,7 @@ const Cart = () => {
                     .map((item) => (
                       <FlatHorScrol
                         key={item.id}
+                        blur={item.section === "women" ? 5 : 0}
                         id={item.id}
                         name={item.name}
                         imgsrc={item.imgsrc}

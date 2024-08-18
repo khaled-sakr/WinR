@@ -50,6 +50,7 @@ import whiteHurt from "../assets/icons/whiteHurt.png";
 import clock from "../assets/icons/clock.png";
 import deliveryTruck from "../assets/icons/deliveryTruck.gif";
 import Animation from "../assets/icons/Animation.gif";
+import penwing from "../assets/icons/penwing.png";
 
 export default {
   play,
@@ -104,4 +105,5 @@ export default {
   clock,
   deliveryTruck,
   Animation,
+  penwing,
 };

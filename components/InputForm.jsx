@@ -25,6 +25,8 @@ const InputForm = ({
   addInputStyle,
   finalInput,
   disabled,
+  num,
+  ErrorPosition,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(true);
@@ -48,6 +50,7 @@ const InputForm = ({
         onChangeText={handleChangeText}
         secureTextEntry={name === "Password" && !showPassword}
         placeholderTextColor="#b6b6b7"
+        keyboardType={num && "numeric"}
         className={`${addclass} ${
           finalInput
             ? "bg-white h-[42px] border"
@@ -62,7 +65,8 @@ const InputForm = ({
       {name.includes("Password") && !disabled && (
         <TouchableOpacity
           className={`
-          absolute ${
+          absolute 
+          ${
             error
               ? finalInput
                 ? "right-4 bottom-5.5"
@@ -76,7 +80,7 @@ const InputForm = ({
         >
           <Image
             source={!showPassword ? icons.eye : icons.eyeHide}
-            className="w-6 h-6"
+            className={`w-6 h-6 `}
             resizeMode="contain"
           />
         </TouchableOpacity>

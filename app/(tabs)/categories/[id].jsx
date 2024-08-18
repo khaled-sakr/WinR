@@ -141,6 +141,7 @@ const CategoryId = () => {
                     name={item?.name}
                     price={item?.price}
                     discount={item?.discount}
+                    blur={item.section === "women" ? 10 : 0}
                   />
                 )}
               />

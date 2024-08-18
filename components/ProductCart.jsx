@@ -26,6 +26,7 @@ const numberOfOptions = [
 ];
 const ProductCart = ({
   overlay,
+  blur,
   favourite,
   addStyle,
   favData,
@@ -90,6 +91,7 @@ const ProductCart = ({
           <Image
             source={{ uri: favData?.imgsrc || cartData?.imgsrc }}
             className="w-[137px] h-[174px] rounded-md"
+            blurRadius={blur}
             resizeMode="cover"
           />
         </View>

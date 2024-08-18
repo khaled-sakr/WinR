@@ -75,7 +75,7 @@ const Women = () => {
           keyExtractor={(item) => item.src}
           renderItem={({ item }) => (
             <CustomIcon
-              blur={5}
+              blur={10}
               addStyleImage=" text-center h-[64px] w-[64px] "
               src={item.src}
               title={item.title}
@@ -103,7 +103,7 @@ const Women = () => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <FlatHorScrol
-                blur={5}
+                blur={item.section === "women" ? 10 : 0}
                 imgsrc={item.imgsrc}
                 name={item.name}
                 price={item.price}
@@ -136,7 +136,7 @@ const Women = () => {
                   allData={item}
                   id={item.id}
                   key={item.id}
-                  blur={5}
+                  blur={10}
                   imgsrc={item.imgsrc}
                   name={item.name}
                   price={item.price}

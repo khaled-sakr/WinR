@@ -95,6 +95,7 @@ const OrderId = () => {
         </View>
 
         <ProductCart
+          blur={thisOrder?.section === "women" ? 5 : 0}
           cartData={thisOrder}
           setRerender={setRerender}
           rerender={rerender}

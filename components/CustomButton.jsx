@@ -13,6 +13,7 @@ import { Link, router } from "expo-router";
 import { icons } from "@/constants";
 
 const CustomButton = ({
+  ErrorPosition,
   title,
   onPress,
   size,
@@ -24,6 +25,7 @@ const CustomButton = ({
   isLoading,
   fav,
   animation,
+  changeForm,
 }) => {
   const rotation = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -59,6 +61,8 @@ const CustomButton = ({
             ? logout
               ? "bg-transparent"
               : "bg-white border border-slate-300"
+            : changeForm
+            ? "bg-gray-400"
             : "bg-secondary"
         }`}
       >
@@ -82,11 +86,7 @@ const CustomButton = ({
               : "text-white"
           } text-lg `}
         >
-          {loading ? (
-            <Text className="animate-pulse">wait second pls...</Text>
-          ) : (
-            title
-          )}
+          {loading ? <Text className="animate-pulse">loading...</Text> : title}
         </Text>
       </TouchableOpacity>
     </>

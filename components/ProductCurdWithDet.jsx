@@ -5,7 +5,14 @@ import { useState } from "react";
 import FavIcon from "./FavIcon";
 import { router } from "expo-router";
 
-const ProductCurdWithDet = ({ allData, imgsrc, name, price, discount }) => {
+const ProductCurdWithDet = ({
+  allData,
+  imgsrc,
+  name,
+  price,
+  discount,
+  blur,
+}) => {
   const [fav, setFav] = useState(true);
   const toggleFavorite = () => {
     setFav((prev) => !prev);
@@ -14,6 +21,7 @@ const ProductCurdWithDet = ({ allData, imgsrc, name, price, discount }) => {
     <View className="mx-auto w-[157px] h-[230px] relative">
       <View className="relative">
         <Image
+          blurRadius={blur}
           source={{ uri: imgsrc }}
           className="w-[155px] h-[172.2px] rounded-md"
           resizeMode="cover"

@@ -1,25 +1,38 @@
 // import { registerRootComponent } from 'expo';
 import { Alert, Animated, ScrollView, Text, View } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeadTitle from "../../components/HeadTitle";
 import { icons } from "../../constants";
 import DropDown from "../../components/DropDown";
 import CustomButton from "../../components/CustomButton";
 import { TouchableOpacity } from "react-native";
-import { router } from "expo-router";
-import { logOut } from "../../lib/supabase";
+import { router, useFocusEffect } from "expo-router";
+import {
+  changeCountry,
+  changeLanguage,
+  changeNotification,
+  getUsers,
+  logOut,
+} from "../../lib/supabase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Index from "../index";
-import { registerRootComponent } from "expo";
 const countryOptions = [
-  { title: "Egypt", value: 1 },
-  { title: "KSA", value: 2 },
-  { title: "UAE", value: 3 },
+  { title: "Egypt", value: "Egypt" },
+  { title: "KSA", value: "KSA" },
+  { title: "UAE", value: "UAE" },
+];
+const languageOptions = [
+  { title: "Arabic", value: "Arabic" },
+  { title: "English", value: "English" },
+  { title: "Frensh", value: "Frensh" },
 ];
 const Settings = () => {
   const [user, setUser] = useState();
-  const [value, setValue] = useState();
+  const [country, setCountry] = useState();
+  const [isChangingLanguage, setIsChangingLanguage] = useState();
+  const [isChangingNotification, setIsChangingNotification] = useState();
+  const [isChangingCountry, setIsChangingCountry] = useState();
+  const [language, setLanguage] = useState();
   const [loading, setLoading] = useState(false);
   const [notfication, setNotfication] = useState(false);
   const AuthList = AsyncStorage.getItem("AuthList");
@@ -32,13 +45,52 @@ const Settings = () => {
       if (error) {
         Alert.alert("Error signing out:", error.message);
       } else {
+        setLoading(false);
         router.replace("welcome");
       }
-      setLoading(false);
     } catch (error) {
       throw new error();
     }
   }
+  useFocusEffect(
+    useCallback(() => {
+      async function fetchdata() {
+        setLoading(true);
+        const user = await getUsers();
+        setUser(user[0]);
+        setLoading(false);
+      }
+      fetchdata();
+    }, [])
+  );
+
+  useEffect(() => {
+    async function changeCountryFun() {
+      setIsChangingCountry(true);
+      await changeCountry(country);
+      setIsChangingCountry(false);
+    }
+    changeCountryFun();
+  }, [country]);
+  //////////////////////////////////////
+  useEffect(() => {
+    async function changeLanguageFun() {
+      setIsChangingLanguage(true);
+      await changeLanguage(language);
+      setIsChangingLanguage(false);
+    }
+    changeLanguageFun();
+  }, [language]);
+  //////////////////////////////////////
+  useEffect(() => {
+    async function changeNotificationFun() {
+      setIsChangingNotification(true);
+      await changeNotification(notfication);
+      setIsChangingNotification(false);
+    }
+    changeNotificationFun();
+  }, [notfication]);
+  //////////////////////////////////////////
   const fadeAnim = useRef(new Animated.Value(0)).current;
   function animatedAction() {
     if (notfication) {
@@ -63,19 +115,27 @@ const Settings = () => {
         <View className="border w-11/12 mx-auto mt-14 mb-4 rounded-md  h-[52px] border-slate-400">
           <DropDown
             settings
-            setValue={setValue}
+            isChanging={isChangingCountry}
+            setValue={setCountry}
             options={countryOptions}
-            addStyle=""
-            placeholder="Country"
+            placeholder={
+              (isChangingCountry === true && "Loading...") ||
+              user?.country ||
+              "Country"
+            }
           />
         </View>
         <View className="border w-11/12 mx-auto my-2 rounded-md h-[52px] border-slate-400">
           <DropDown
             settings
-            setValue={setValue}
-            options={countryOptions}
-            addStyle=""
-            placeholder="Language"
+            isChanging={isChangingLanguage}
+            setValue={setLanguage}
+            options={languageOptions}
+            placeholder={
+              (isChangingLanguage === true && "Loading...") ||
+              user?.language ||
+              "Language"
+            }
           />
         </View>
         <View className="w-11/12 h-14 mt-20 flex-row justify-between mx-auto">
@@ -90,9 +150,14 @@ const Settings = () => {
             }}
           >
             <View
-              className={` px-1 w-full ${
-                notfication ? "bg-secondary" : "bg-gray-300"
-              } h-7 my-auto rounded-[30px] mr-3`}
+              className={`px-1 w-full ${
+                isChangingNotification
+                  ? "bg-gray-300"
+                  : notfication
+                  ? "bg-secondary"
+                  : "bg-gray-300"
+              } $
+                h-7 my-auto rounded-[30px] mr-3`}
             >
               <Animated.View
                 style={[{ translateX: fadeAnim }]}

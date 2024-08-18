@@ -9,7 +9,6 @@ import React, { useEffect, useRef } from "react";
 import { icons } from "../constants";
 import { useState } from "react";
 import { checkFav, deleteFav, insertFav } from "../lib/supabase";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FavIcon = ({ addStyle, size, allData, id, children }) => {
   const [fav, setFav] = useState();

@@ -68,6 +68,7 @@ const Orders = () => {
           orders.map((item) => (
             <View key={item.id_order}>
               <ProductOrders
+                blur={item.section === "women" ? 5 : 0}
                 key={item.id}
                 title={item.status}
                 orderData={item}

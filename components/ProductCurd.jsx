@@ -1,18 +1,14 @@
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import React, { useEffect } from "react";
-import { icons } from "../constants";
-import { useState } from "react";
 import { router } from "expo-router";
 import FavIcon from "./FavIcon";
-import { insertFav } from "../lib/supabase";
 
 const ProductCurd = ({ allData, blur, id }) => {
-  // function insertTHis() {}
   return (
     <View className="flex flex-row w-full mt-4">
       <Image
-        source={{ uri: allData.imgsrc }}
         blurRadius={blur}
+        source={{ uri: allData.imgsrc }}
         className="w-[170px] h-[254px] rounded-md"
       />
       <View className="flex flex-col relative flex-1">
