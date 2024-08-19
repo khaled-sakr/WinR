@@ -1,10 +1,4 @@
-import {
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  View,
-  Animated,
-} from "react-native";
+import { Image, TouchableOpacity, Animated } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { icons } from "../constants";
 import { useState } from "react";
@@ -53,7 +47,6 @@ const FavIcon = ({ addStyle, size, allData, id, children }) => {
     fetchCheck();
   }
   async function deleteFavourite() {
-    // if (isLoading) return;
     setIsLoading(true);
     await deleteFav(id);
     fetchCheck();
@@ -107,54 +100,6 @@ const FavIcon = ({ addStyle, size, allData, id, children }) => {
         )}
       </TouchableOpacity>
     );
-  // if (isLoading) {
-  //   <View
-  //     className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute border-2 border-gray-300 rounded-full`}
-  //   >
-  //     <Image
-  //       source={icons.hurtgray}
-  //       className="w-full h-full"
-  //       resizeMode="contain"
-  //     />
-  //   </View>;
-  // }
-  // return (
-  //   <TouchableOpacity
-  //     activeOpacity={0.7}
-  //     onPress={insertFavourite}
-  //     className={`${addStyle} ${size} pb-1 pt-1.5 top-0 right-0 absolute border-2 border-gray-300 rounded-full`}
-  //   >
-  //     {isLoading ? (
-  //       <View>
-  //         {isLoading ? (
-  //           <Image
-  //             source={icons.hurtgray}
-  //             className="w-full h-full"
-  //             resizeMode="contain"
-  //           />
-  //         ) : (
-  //           <Image
-  //             source={icons.favourite}
-  //             className="w-full h-full"
-  //             resizeMode="contain"
-  //           />
-  //         )}
-  //       </View>
-  //     ) : fav ? (
-  //       <Image
-  //         source={icons.favouriteFull}
-  //         className="w-full h-full"
-  //         resizeMode="contain"
-  //       />
-  //     ) : (
-  //       <Image
-  //         source={icons.favourite}
-  //         className="w-full h-full"
-  //         resizeMode="contain"
-  //       />
-  //     )}
-  //   </TouchableOpacity>
-  // );
 };
 
 export default FavIcon;

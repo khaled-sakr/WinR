@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { icons, images } from "../constants";
-import { changeImage, getUsers } from "../lib/supabase";
+import { changeImage } from "../lib/supabase";
 
 export default function ImageProfile({ imageProfile, isLoading }) {
   const [image, setImage] = useState(null);
@@ -14,9 +14,6 @@ export default function ImageProfile({ imageProfile, isLoading }) {
       aspect: [1, 1],
       quality: 1,
     });
-
-    console.log(result);
-
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }

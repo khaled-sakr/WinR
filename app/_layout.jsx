@@ -3,7 +3,6 @@ import { useFonts } from "expo-font";
 import "react-native-url-polyfill/auto";
 import { SplashScreen, Stack } from "expo-router";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
@@ -44,12 +43,8 @@ const RootLayout = () => {
       <Stack.Screen name="orders/[id]" options={{ headerShown: false }} />
       <Stack.Screen name="(profile)" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="search/[query]" options={{ headerShown: false }} />
+      <Stack.Screen name="search" options={{ headerShown: false }} />
       <Stack.Screen name="checkout" options={{ headerShown: false }} />
-      {/* <Stack.Screen name="address" options={{ headerShown: false }} />  */}
-      {/* <Stack.Screen name="products/[product]" options={{ headerShown: false }} /> */}
-      {/* <Stack.Screen name="(categories)" options={{ headerShown: false }} /> */}
-      {/* <Stack.Screen name="(section)" options={{ headerShown: false }} /> */}
     </Stack>
   );
 };

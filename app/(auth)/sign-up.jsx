@@ -176,7 +176,6 @@ const SignUp = () => {
           Email rate limit exceeded
         </Text>
       )}
-      {/* {errors.includes('Email rate limit exceeded')&&<Text className='text-xs w-11/12 text-center mt-1 font-semibold text-red-500'>Email rate limit exceeded</Text>} */}
       <TitleWithLine title="OR" size="w-3/12" addStyle="font-bold" />
       <View className="flex flex-row w-8/12 mx-auto mt-3 justify-between">
         <View className="border border-slate-300 rounded-full p-3">

@@ -1,16 +1,11 @@
 import { TouchableOpacity, Text, View } from "react-native";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Image } from "react-native";
 import { router, useFocusEffect } from "expo-router";
 import CustomButton from "./CustomButton";
 import DropDown from "./DropDown";
 import { icons } from "../constants";
-import {
-  changeQuantity,
-  deleteCart,
-  deleteFav,
-  getCart,
-} from "../lib/supabase";
+import { changeQuantity, deleteCart, deleteFav } from "../lib/supabase";
 import FavIcon from "./FavIcon";
 import { Animated } from "react-native";
 const numberOfOptions = [

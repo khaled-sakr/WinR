@@ -1,10 +1,9 @@
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "../../constants";
 import HeadTitle from "../../components/HeadTitle";
 import ProductOrders from "../../components/ProductOrders";
-import { router } from "expo-router";
 import { getOrder } from "../../lib/supabase";
 import ProductOrdersLoading from "../../components/loading/ProductOrdersLoading";
 import Hr from "../../components/Hr";

@@ -33,7 +33,6 @@ const Cart = () => {
         0
       )
     );
-    console.log(sum);
     setCart(
       cart?.sort((a, b) => {
         if (a.name.toLowerCase() < b.name.toLowerCase()) {

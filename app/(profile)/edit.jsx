@@ -6,7 +6,7 @@ import CustomButton from "../../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "../../constants";
 import { router, useFocusEffect } from "expo-router";
-import { changeUserDetails, getUsers, supabase } from "../../lib/supabase";
+import { changeUserDetails, getUsers } from "../../lib/supabase";
 import FormUserLoading from "../../components/loading/FormUserLoading";
 const Edit = () => {
   const [form, setForm] = useState();
@@ -36,7 +36,6 @@ const Edit = () => {
       fetchdata();
     }, [])
   );
-  ///////////////////////////////////////FORM /////////
   const validate = () => {
     const newErrors = [];
     if (!form?.firstname) newErrors.push("The first name is required");
@@ -52,11 +51,9 @@ const Edit = () => {
     return newErrors;
   };
 
-  ///////////////////////////////////////FORM /////////
   const handleChange = (i, value) => {
     setForm({ ...form, [i]: value });
   };
-  ///////////////////////////////////////FORM /////////
   const changeFun = async () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -72,7 +69,6 @@ const Edit = () => {
       }
     }
   };
-  ///////////////////////////////////////FORM /////////
 
   if (loading) {
     return <FormUserLoading />;

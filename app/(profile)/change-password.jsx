@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import HeadTitle from "../../components/HeadTitle";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,8 +14,6 @@ const ChangePassword = () => {
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingClick, setLoadingClick] = useState(false);
-  /////////////////////////////////////////////////
-  /////////////////////////////////////////////////
   /////////////////////////////////////////////////
   const validate = () => {
     const newErrors = [];
@@ -43,7 +41,7 @@ const ChangePassword = () => {
         setErrors(validationErrors);
       } else {
         setLoadingClick(true);
-        await supabase.auth.updateUser({ password: form.password });
+        await supabase.auth.updateUser({ password: form.newPassword });
         await changeUserDetails("password", form?.newPassword);
         router.replace("/edit");
         setLoadingClick(false);
@@ -137,15 +135,6 @@ const ChangePassword = () => {
           title="Confirm Password"
           type="normal"
           size="full"
-          // error={
-          //   errors?.includes("The confirmation password is required") ?
-          //   "The confirmation password is required"
-          //   errors?.includes(
-          //       "The confirmatin password must be equal the new password"
-          //     )
-          //   ? "The confirmatin password must be equal the new password"
-          //   : ""
-          // }
           error={
             errors?.includes("The confirmation password is required")
               ? "The confirmation password is required"

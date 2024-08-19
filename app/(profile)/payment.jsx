@@ -1,13 +1,4 @@
-import {
-  StyleSheet,
-  Animated,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  Text,
-  View,
-  FlatList,
-} from "react-native";
+import { Image, TouchableOpacity, ScrollView, Text, View } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeadTitle from "../../components/HeadTitle";
@@ -16,11 +7,8 @@ import { router, useFocusEffect } from "expo-router";
 import ValidCard from "../../components/ValidCard";
 
 import ThreeDotCridit from "../../components/ThreeDotCridit";
-import { useRef } from "react";
-import ProductCurdLoading from "../../components/loading/ProductCurdLoading";
 import { getCards } from "../../lib/supabase";
 import DeleteModal from "../../components/DeleteModal";
-import FormUserLoading from "../../components/loading/FormUserLoading";
 import FormUserCardsLoading from "../../components/loading/FormUserCardsLoading";
 
 const Payment = () => {

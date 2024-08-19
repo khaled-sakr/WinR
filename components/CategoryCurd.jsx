@@ -1,6 +1,5 @@
 import { TouchableOpacity, Image, Text, View } from "react-native";
 import React from "react";
-import { images } from "../constants";
 import { router } from "expo-router";
 
 const CategoryCurd = ({ src, title, type }) => {

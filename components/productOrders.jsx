@@ -1,11 +1,10 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import { icons, images } from "../constants";
+import React from "react";
+import { icons } from "../constants";
 import { TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 
 const ProductOrders = ({ title, orderData, blur }) => {
-  console.log(orderData);
   return (
     <>
       <View className="flex-row mt-4 w-11/12 mx-auto justify-between">

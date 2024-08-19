@@ -15,8 +15,6 @@ const DeleteModal = ({ id, threeDot, setThreeDot, fetchData, card }) => {
     setThreeDot(false);
     await fetchData();
   }
-
-  console.log(ids);
   ////////////////////////////////////////////////////////
   const slide = useRef(new Animated.Value(0)).current;
   function animatedAction(bool) {

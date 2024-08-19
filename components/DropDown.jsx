@@ -2,17 +2,6 @@ import SelectDropdown from "react-native-select-dropdown";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-const emojisWithIcons = [
-  { title: "1", value: 1 },
-  { title: "2", value: 2 },
-  { title: "3", value: 3 },
-  { title: "4", value: 4 },
-  { title: "5", value: 5 },
-  { title: "6", value: 6 },
-  { title: "7", value: 7 },
-  { title: "8", value: 8 },
-  { title: "9", value: 9 },
-];
 
 const DropDown = ({
   isChanging,
@@ -27,7 +16,6 @@ const DropDown = ({
       <SelectDropdown
         data={options}
         onSelect={(selectedItem, index) => {
-          // console.log(selectedItem)
           setValue(selectedItem.value);
         }}
         renderButton={(selectedItem, isOpened) => {

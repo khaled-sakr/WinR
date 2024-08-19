@@ -1,5 +1,5 @@
-import { Text, View } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import { View } from "react-native";
+import React, { useCallback, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TitleWithLine from "../../../components/TitleWithLine";
 import { Link, useFocusEffect } from "expo-router";

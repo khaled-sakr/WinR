@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeadTitle from "../../components/HeadTitle";
 import { icons, images } from "../../constants";
@@ -13,11 +13,10 @@ import {
   View,
 } from "react-native";
 import ScrolImg from "../../components/ScrolImg";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import SquareText from "../../components/SquareText";
 import FeatureScrol from "../../components/FeatureScrol";
 import BoldTitle from "../../components/BoldTitle";
-import { getProducts, getUserDetails } from "../../lib/supabase";
 const ImgOfScrol = [
   {
     title: "Fashion Men",

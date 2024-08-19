@@ -26,24 +26,6 @@ const ProductCurdWithDet = ({
           className="w-[155px] h-[172.2px] rounded-md"
           resizeMode="cover"
         />
-        {/* <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={toggleFavorite}
-          className="w-[36px] h-[36px] pb-2 pt-2.5 top-1 right-1 absolute bg-white rounded-full"
-        > */}
-        {/* {fav ? (
-            <Image
-              source={icons.favourite}
-              className="w-full h-full"
-              resizeMode="contain"
-            />
-          ) : (
-            <Image
-              source={icons.favouriteFull}
-              className="w-full h-full"
-              resizeMode="contain"
-            />
-          )} */}
         <FavIcon
           allData={allData}
           size="w-[30px] h-[30px]"

@@ -20,9 +20,7 @@ import { changeCardsDetails, getCards, insertCards } from "../../lib/supabase";
 
 const Addcard = () => {
   const [form, setForm] = useState();
-  const [checkForm, setCheckForm] = useState();
   const [errors, setErrors] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [loadingClick, setLoadingClick] = useState(false);
   ////////////////////////////////////////////////////
   const validate = () => {
@@ -53,28 +51,9 @@ const Addcard = () => {
       setLoadingClick(false);
     }
   };
-  ////////////////////////////////////////////////////
-  if (loading) {
-    return <FormUserLoading />;
-  }
-  ////////////////////////////////////////////////////
   return (
     <SafeAreaView>
       <ScrollView>
-        {/* <Animated.View
-          style={[{ translateY: slide }]}
-          className={`absolute bottom-0 h-[70px] z-30 pt-1 w-full rounded-t-xl bg-slate-200`}
-        >
-          <TouchableOpacity
-            onPress={() => setThreeDot(false)}
-            activeOpacity={0.6}
-            className="w-11/12 h-[64.5%] items-center  mx-auto flex-1 font-semibold text-center my-2"
-          >
-            <Text className="font-bold text-center text-base text-slate-600 my-auto">
-              DELETE
-            </Text>
-          </TouchableOpacity>
-        </Animated.View> */}
         <View className="relative h-screen">
           <HeadTitle srcIconMiddle={icons.winr} titleRight="Cancel" middle />
           <BoldTitle

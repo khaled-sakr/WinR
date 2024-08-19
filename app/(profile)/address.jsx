@@ -1,11 +1,4 @@
-import {
-  TouchableOpacity,
-  ScrollView,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { TouchableOpacity, ScrollView, Image, Text, View } from "react-native";
 import React, { useCallback, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeadTitle from "../../components/HeadTitle";
@@ -33,7 +26,6 @@ const Address = () => {
       setForm(user[0]);
       setCheckForm(user[0]);
       setLoading(false);
-      console.log("form", form);
     }
     fetchdata();
   }, []);
@@ -93,7 +85,6 @@ const Address = () => {
     }
   };
 
-  ////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////
   if (loading) {
     return <FormUserLoading />;
@@ -211,7 +202,6 @@ const Address = () => {
             title={loadingClick ? "LOADING..." : "SAVE ADDRESS"}
             size="large"
             type="finalButtoms"
-            // changeForm={form === checkForm}
             addStyle="mt-6"
             isLoading={loading}
           />

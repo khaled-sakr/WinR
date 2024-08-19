@@ -57,7 +57,6 @@ const Checkout = () => {
   };
   /////////////////////////////////////////////
   /////////////////////////////////////////////
-  /////////////////////////////////////////////
   const date = new Date().toISOString().split("T")[0];
   function generateRandomId() {
     return Math.floor(100000000 + Math.random() * 900000000);
@@ -82,8 +81,6 @@ const Checkout = () => {
     setCheckCard(
       cardsUser.filter((item) => item.chosen_card === true).length > 0
     );
-    console.log("address", checkAddress);
-    console.log("checkCard", checkCard);
     setSum(
       cart.reduce(
         (n, { price, quantity_product, discount }) =>

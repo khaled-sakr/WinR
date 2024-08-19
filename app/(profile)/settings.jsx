@@ -1,4 +1,3 @@
-// import { registerRootComponent } from 'expo';
 import { Alert, Animated, ScrollView, Text, View } from "react-native";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";

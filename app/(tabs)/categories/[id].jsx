@@ -6,7 +6,7 @@ import {
   View,
   Image,
 } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeadTitle from "../../../components/HeadTitle";
@@ -39,15 +39,11 @@ const CategoryId = () => {
     setThisCategory(data);
   }
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, [thisCategory]);
   useFocusEffect(
     useCallback(() => {
       fetchData();
     }, [id])
   );
-  console.log(id);
   if (!isLoading && thisCategory.length === 0)
     return (
       <SafeAreaView>

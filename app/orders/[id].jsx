@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeadTitle from "../../components/HeadTitle";
@@ -16,7 +16,6 @@ import Hr from "../../components/Hr";
 import BoldTitle from "../../components/BoldTitle";
 import Dues from "../../components/Dues";
 import { deleteOrder, getOrderById } from "../../lib/supabase";
-import ProductCartLoading from "../../components/loading/ProductCartLoading";
 import OrderLoading from "../../components/loading/OrderLoading";
 
 const OrderId = () => {
@@ -29,7 +28,6 @@ const OrderId = () => {
     setIsLoading(true);
     const order = await getOrderById(id);
     setThisOrder(order[0]);
-    console.log(thisOrder);
     setIsLoading(false);
   }
   useEffect(() => {
@@ -40,10 +38,6 @@ const OrderId = () => {
     await deleteOrder(id);
     setIsLoading(false);
   }
-  console.log(thisOrder);
-  console.log(thisOrder?.status);
-  console.log(thisOrder?.date_order);
-  console.log(thisOrder?.date_arrived);
   if (isLoading) return <OrderLoading />;
   return (
     <SafeAreaView>

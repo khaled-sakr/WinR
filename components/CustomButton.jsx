@@ -1,23 +1,12 @@
-import {
-  ActivityIndicator,
-  Animated,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  logout,
-} from "react-native";
+import { Animated, Text, TouchableOpacity } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { Link, router } from "expo-router";
 import { icons } from "@/constants";
 
 const CustomButton = ({
-  ErrorPosition,
   title,
   onPress,
   size,
-  logout,
   type,
   cancel,
   addStyle,

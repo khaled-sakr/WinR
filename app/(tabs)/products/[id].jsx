@@ -1,16 +1,9 @@
-import {
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { TouchableOpacity, Image, ScrollView, Text, View } from "react-native";
 import React, { useCallback, useEffect, useRef } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, useLocalSearchParams } from "expo-router";
 import HeadTitle from "../../../components/HeadTitle";
-import { icons, images } from "../../../constants";
+import { icons } from "../../../constants";
 import SearchBar from "../../../components/SearchBar";
 import FavIcon from "../../../components/FavIcon";
 import BoldTitle from "../../../components/BoldTitle";
@@ -43,8 +36,6 @@ const numberOfOptions = [
 ];
 const ProductId = () => {
   const { id } = useLocalSearchParams();
-  // const pathname=use
-  console.log(id);
   const [thisProduct, setThisProduct] = useState([]);
   const [quantity, setQuantity] = useState();
   const [offers, setOffers] = useState([]);
@@ -78,7 +69,6 @@ const ProductId = () => {
     const cart = await checkCart(id);
     setQuantity(cart?.quantity_product || 1);
     setSize(cart?.size);
-    console.log("cart", cart);
     cart ? setCheckCartState(cart[0]) : setCheckCartState([]);
     setIsLoadingClick(false);
   }
@@ -256,7 +246,7 @@ const ProductId = () => {
         <SearchBar />
 
         <Text className="w-11/12 text-lg font-bold text-stone-600 my-5 mx-auto">
-          T-shirt
+          {thisProduct.name}
         </Text>
         <View className="w-11/12 mx-auto relative">
           <FlatList
