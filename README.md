@@ -1,50 +1,54 @@
-# Welcome to your Expo app 👋
+# WinR
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+WinR is an e-commerce mobile application built with React Native and Expo. It leverages modern tools and libraries to create a seamless and efficient shopping experience. The project uses NativeWind for styling, Expo Router for navigation, Supabase as the backend service, and Expo Image Picker for image selection.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **React Native & Expo**: Cross-platform mobile application development.
+- **NativeWind**: Utility-first styling framework for React Native.
+- **Expo Router**: Simplified routing with file-based navigation.
+- **Supabase**: Backend as a service for authentication, database, and storage.
+- **Expo Image Picker**: Native image picker integration.
+- **TypeScript**: Type-safe development environment (little of files).
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Screenshots
+<div>
+  <img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20142949.png' width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143035.png'width='400' heigth='300'>
+</div>
+<div>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143106.png'width='400' heigth='300'>
+  <img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143255.png'width='400' heigth='300'>
+</div>
+<div>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143320.png'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143344.png'width='400' heigth='300'>
+</div>
+<div>
+  <img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143400.png'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143412.png'width='400' heigth='300'>
+</div>
+<div>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143426.png'width='400' heigth='300'>
+  <img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143453.png'width='400' heigth='300'>
+</div>
+<div>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143517.png'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143531.png'width='400' heigth='300'>
+  <div/>
+  <div>
+  <img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143558.png'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143614.png'width='400' heigth='300'>
+    <div/>
+    <div>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143632.png'width='400' heigth='300'>
+  <img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143644.png'width='400' heigth='300'>
+      <div/>
+<div>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143709.png'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143720.png'width='400' heigth='300'>
+</div>
+<div>
+  <img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143734.png'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/E-commerece/blob/v1/public/assets/Annotation%202024-06-23%20143754.png'width='400' heigth='300'>
+</div>
