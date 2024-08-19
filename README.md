@@ -2,8 +2,20 @@
 
 WinR is an e-commerce mobile application built with React Native and Expo. It leverages modern tools and libraries to create a seamless and efficient shopping experience. The project uses NativeWind for styling, Expo Router for navigation, Supabase as the backend service, and Expo Image Picker for image selection.
 
-## Features
+## Project Documentation
+- [Apk App](https://t-empire.netlify.app): the demo project in netlify 
+- [Github](https://github.com/khaled-sakr/WinR): let's see the code.
+- [G.Drive]([https://www.youtube.com/watch?v=dcCKrCRLq_s](https://drive.google.com/file/d/1xoithqlONg9hqwdXfGaXio090cDTJcqg/view?usp=sharing)): let's see the video for app.
 
+
+## Features
+- Product Listing: Browse through a curated selection of T-shirts categorized by style, color, and size.
+- Shopping Cart: Add T-shirts to your cart, adjust quantities, and proceed to checkout seamlessly.
+- User Authentication: Securely sign up, log in, and manage your profile and orders.
+- Responsive Design: Enjoy a consistent user experience across desktop, tablet, and mobile devices.
+- users account: manage your all data as address,name,image,favourite items and etc
+
+## Technologies Used
 - **React Native & Expo**: Cross-platform mobile application development.
 - **NativeWind**: Utility-first styling framework for React Native.
 - **Expo Router**: Simplified routing with file-based navigation.
