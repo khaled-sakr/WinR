@@ -41,33 +41,33 @@ WinR is an e-commerce mobile application built with React Native and Expo. It le
 <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_18_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
   <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_19_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
 <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_1_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_20_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_20_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
 </div>
   <div>
     <div>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_23_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_21_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_22_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_24_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_23_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
+  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_21_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_22_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
+  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_24_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
     <div/>
       <div/>
 <div>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_27_2024-08-20_20-44-20.jpg' width='400' heigth='300'>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_28_2024-08-20_20-44-20.jpg' width='400' heigth='300'>
-  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_31_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_30_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_27_2024-08-20_20-44-20.jpg' width='200' heigth='500'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_28_2024-08-20_20-44-20.jpg' width='200' heigth='500'>
+  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_31_2024-08-20_20-44-20.jpg' width='200' heigth='500'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_30_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
 </div> <div>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_1_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_2_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_3_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_4_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_1_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
+  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_2_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
+  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_3_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_4_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
 </div>
 <div>
-  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_5_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_6_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_7_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
-<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_8_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
+  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_5_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_6_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
+  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_7_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
+<img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_8_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
 </div>
   <div>
-  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_9_2024-08-20_20-44-20.jpg'width='400' heigth='300'>
+  <img src='https://github.com/khaled-sakr/WinR/blob/main/assets/images/github/photo_9_2024-08-20_20-44-20.jpg'width='200' heigth='500'>
 </div>
