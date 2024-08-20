@@ -34,9 +34,9 @@ const ProductCart = ({
   const [quantity, setQuantity] = useState(cartData?.quantity_product);
   const [isLoading, setIsLoading] = useState();
   const [isChanging, setIsChanging] = useState();
-  // const opacity = useRef(new Animated.Value(1)).current;
   const rotation = useRef(new Animated.Value(0)).current;
   async function deleteCartFun() {
+    if (isLoading) return;
     setIsLoading(true);
     await deleteCart(cartData.id);
     setIsLoading(false);
@@ -63,7 +63,7 @@ const ProductCart = ({
       Animated.loop(
         Animated.timing(rotation, {
           toValue: 1,
-          duration: 1500, // Adjust duration for rotation speed
+          duration: 1500,
           useNativeDriver: true,
         })
       ).start();

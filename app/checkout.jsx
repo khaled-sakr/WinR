@@ -57,7 +57,6 @@ const Checkout = () => {
   };
   /////////////////////////////////////////////
   /////////////////////////////////////////////
-  const date = new Date().toISOString().split("T")[0];
   function generateRandomId() {
     return Math.floor(100000000 + Math.random() * 900000000);
   }
@@ -105,11 +104,11 @@ const Checkout = () => {
     }
   }
   function insertOrderFun() {
+    if (isLoading || isLoadingClick) return null;
     if (paymentCard ? checkAddress && checkCard : checkAddress) {
       cart.map((item) => {
         const id = generateRandomId();
         const { dateStart, dateEnd } = formatDateToShort();
-        // console.log("dateStart, dateEnd", dateStart, dateEnd);
         insertOrder({
           ...item,
           status: "PENDING",
@@ -145,6 +144,7 @@ const Checkout = () => {
         <TouchableOpacity
           activeOpacity={0.9}
           onPress={() => {
+            if (isLoading || isLoadingClick) return null;
             startAnimation();
             insertOrderFun();
           }}

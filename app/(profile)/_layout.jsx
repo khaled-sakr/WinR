@@ -18,3 +18,21 @@ const AuthLayout = () => {
 };
 
 export default AuthLayout;
+// {
+//   "cli": {
+//     "version": ">= 10.2.3"
+//   },
+//   "build": {
+//     "development": {
+//       "developmentClient": true,
+//       "distribution": "internal"
+//     },
+//     "preview": {
+//       "distribution": "internal"
+//     },
+//     "production": {}
+//   },
+//   "submit": {
+//     "production": {}
+//   }
+// }

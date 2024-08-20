@@ -28,23 +28,21 @@ const languageOptions = [
 const Settings = () => {
   const [user, setUser] = useState();
   const [country, setCountry] = useState();
-  const [isChangingLanguage, setIsChangingLanguage] = useState();
-  const [isChangingNotification, setIsChangingNotification] = useState();
-  const [isChangingCountry, setIsChangingCountry] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const [language, setLanguage] = useState();
-  const [loading, setLoading] = useState(false);
-  const [notfication, setNotfication] = useState(false);
+  const [pressedAnimated, setPressedAnimated] = useState(false);
+  const [notification, setNotfication] = useState();
   const AuthList = AsyncStorage.getItem("AuthList");
   console.log(AuthList);
 
   async function signOut() {
-    setLoading(true);
+    setIsLoading(true);
     try {
       const { error } = logOut();
       if (error) {
         Alert.alert("Error signing out:", error.message);
       } else {
-        setLoading(false);
+        setIsLoading(false);
         router.replace("welcome");
       }
     } catch (error) {
@@ -54,54 +52,37 @@ const Settings = () => {
   useFocusEffect(
     useCallback(() => {
       async function fetchdata() {
-        setLoading(true);
+        setIsLoading(true);
         const user = await getUsers();
+        setNotfication(user[0]["notification"]);
         setUser(user[0]);
-        setLoading(false);
+        animatedAction();
+        setIsLoading(false);
       }
       fetchdata();
     }, [])
   );
-
-  useEffect(() => {
-    async function changeCountryFun() {
-      setIsChangingCountry(true);
-      await changeCountry(country);
-      setIsChangingCountry(false);
-    }
-    changeCountryFun();
-  }, [country]);
-  //////////////////////////////////////
-  useEffect(() => {
-    async function changeLanguageFun() {
-      setIsChangingLanguage(true);
-      await changeLanguage(language);
-      setIsChangingLanguage(false);
-    }
-    changeLanguageFun();
-  }, [language]);
-  //////////////////////////////////////
-  useEffect(() => {
-    async function changeNotificationFun() {
-      setIsChangingNotification(true);
-      await changeNotification(notfication);
-      setIsChangingNotification(false);
-    }
-    changeNotificationFun();
-  }, [notfication]);
+  async function confirmFun() {
+    if (isLoading) return;
+    setIsLoading(true);
+    await changeCountry(country);
+    await changeLanguage(language);
+    await changeNotification(notification);
+    setIsLoading(false);
+  }
   //////////////////////////////////////////
   const fadeAnim = useRef(new Animated.Value(0)).current;
   function animatedAction() {
-    if (notfication) {
+    if (notification) {
       Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 300,
+        toValue: 6,
+        duration: 200,
         useNativeDriver: true,
       }).start();
     } else {
       Animated.timing(fadeAnim, {
         toValue: 32,
-        duration: 300,
+        duration: 200,
         useNativeDriver: true,
       }).start();
     }
@@ -114,24 +95,22 @@ const Settings = () => {
         <View className="border w-11/12 mx-auto mt-14 mb-4 rounded-md  h-[52px] border-slate-400">
           <DropDown
             settings
-            isChanging={isChangingCountry}
+            isChanging={isLoading}
             setValue={setCountry}
             options={countryOptions}
             placeholder={
-              (isChangingCountry === true && "Loading...") ||
-              user?.country ||
-              "Country"
+              (isLoading === true && "Loading...") || user?.country || "Country"
             }
           />
         </View>
         <View className="border w-11/12 mx-auto my-2 rounded-md h-[52px] border-slate-400">
           <DropDown
             settings
-            isChanging={isChangingLanguage}
+            isChanging={isLoading}
             setValue={setLanguage}
             options={languageOptions}
             placeholder={
-              (isChangingLanguage === true && "Loading...") ||
+              (isLoading === true && "Loading...") ||
               user?.language ||
               "Language"
             }
@@ -146,25 +125,30 @@ const Settings = () => {
             onPress={() => {
               setNotfication((e) => !e);
               animatedAction();
+              setPressedAnimated(true);
             }}
           >
             <View
-              className={`px-1 w-full ${
-                isChangingNotification
+              className={`px-1 w-full  ${
+                isLoading
                   ? "bg-gray-300"
-                  : notfication
+                  : notification
                   ? "bg-secondary"
                   : "bg-gray-300"
-              } $
+              } 
                 h-7 my-auto rounded-[30px] mr-3`}
             >
               <Animated.View
                 style={[{ translateX: fadeAnim }]}
-                className={`h-5 my-auto absolute top-1 transition-all w-5/12  ${
-                  notfication
-                    ? "bg-slate-300 left-0"
-                    : "bg-slate-900 left-[5px]"
-                } rounded-2xl`}
+                className={`h-5 my-auto 
+                    ${!pressedAnimated && !notification && "translate-x-[5px]"}
+                 absolute top-1 transition-all w-5/12 ${
+                   isLoading
+                     ? "bg-transparent"
+                     : notification
+                     ? `bg-slate-300`
+                     : `bg-slate-900`
+                 }    rounded-2xl`}
               ></Animated.View>
             </View>
           </TouchableOpacity>
@@ -173,14 +157,14 @@ const Settings = () => {
           <Text className="text-lg text-red-500 mb-4 mt-2">Delete Account</Text>
         </TouchableOpacity>
         <CustomButton
-          //  onPress={}
+          onPress={confirmFun}
           title="CONFIRM"
           size="small"
           type="finalButtoms"
           addStyle="mt-16"
         />
         <CustomButton
-          loading={loading}
+          loading={isLoading}
           onPress={signOut}
           title="Log Out"
           size="small"

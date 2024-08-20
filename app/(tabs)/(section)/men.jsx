@@ -88,7 +88,7 @@ const Men = () => {
         ) : (
           <FlatList
             className="mt-6 w-11/12 mx-auto"
-            data={menProducts.slice(0, 3)}
+            data={menProducts?.slice(0, 3)}
             horizontal
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item) => item.id}
@@ -112,7 +112,7 @@ const Men = () => {
             </View>
           ) : (
             menProducts
-              .slice(3, 5)
+              ?.slice(3, 5)
               .map((item) => (
                 <ProductCurd
                   allData={item}

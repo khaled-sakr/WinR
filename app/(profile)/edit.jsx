@@ -142,7 +142,6 @@ const Edit = () => {
           type="normal"
           size="full"
           addViewStyle="mt-5"
-          // handleChangeText={(value) => handleChange("email", value)}
           value={form?.email}
         />
 
@@ -154,13 +153,12 @@ const Edit = () => {
           type="normal"
           size="full"
           addViewStyle="mt-5"
-          // value={form?.password}
           value="************"
           disabled
         />
         <View className="w-11/12 mx-auto my-2">
           <TouchableOpacity
-            onPress={() => router.push("change-password")}
+            onPress={() => router.replace("change-password")}
             activeOpacity={0.8}
             className="w-[38%]"
           >

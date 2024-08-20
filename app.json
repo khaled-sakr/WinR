@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "WinR",
-    "slug": "WinR",
+    "slug": "winr-app",
     "scheme": "WinR",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -40,8 +40,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "c583c7ac-060e-4ea7-b1dd-ea8daf918856"
+        "projectId": "077b3cec-f459-4f45-b19d-841d03ce14cc"
       }
-    }
+    },
+    "owner": "khaled-sakr"
   }
 }

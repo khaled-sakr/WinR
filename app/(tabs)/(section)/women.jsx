@@ -52,7 +52,7 @@ const Women = () => {
       fetchData();
     }, [])
   );
-  console.log(womenProducts.map((item) => item.id));
+  console.log(womenProducts?.map((item) => item.id));
   return (
     <SafeAreaView>
       <ScrollView>
@@ -97,7 +97,7 @@ const Women = () => {
         ) : (
           <FlatList
             className="mt-6 w-11/12 mx-auto"
-            data={womenProducts.slice(0, 3)}
+            data={womenProducts?.slice(0, 3)}
             horizontal
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item) => item.id}
@@ -130,7 +130,7 @@ const Women = () => {
             </View>
           ) : (
             womenProducts
-              .slice(2, 4)
+              ?.slice(2, 4)
               .map((item) => (
                 <ProductCurd
                   allData={item}

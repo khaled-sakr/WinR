@@ -107,7 +107,7 @@ const Cart = () => {
             <>
               <View className="mt-3 space-y-5 w-11/12 mx-auto">
                 {!isLoading ? (
-                  cart.map((item) => (
+                  cart?.map((item) => (
                     <ProductCart
                       blur={item.section === "women" ? 5 : 0}
                       key={item.id}
@@ -133,7 +133,7 @@ const Cart = () => {
               >
                 {!isLoading ? (
                   offers
-                    .slice(0.3)
+                    ?.slice(0.3)
                     .map((item) => (
                       <FlatHorScrol
                         key={item.id}

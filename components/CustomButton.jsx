@@ -5,6 +5,7 @@ import { icons } from "@/constants";
 
 const CustomButton = ({
   title,
+  logout,
   onPress,
   size,
   type,

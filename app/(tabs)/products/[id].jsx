@@ -99,7 +99,8 @@ const ProductId = () => {
 
   //4. insert and fetch checker
   async function insertCartFun() {
-    if (isLoading || checkCartState?.length !== 0) return;
+    if (isLoading || isLoadingClick || checkCartState?.length !== 0)
+      return null;
     setIsLoadingClick(true);
     await insertCart({
       ...thisProduct,
@@ -407,7 +408,7 @@ const ProductId = () => {
         <Hr />
         <BoldTitle title="Your Common Brands" addStyle="w-11/12 my-4 mx-auto" />
         <View className="w-11/12 mx-auto">
-          {offers.map((item) => (
+          {offers?.map((item) => (
             <ProductCurd
               key={item.id}
               blur={item.section === "women" ? 10 : 0}

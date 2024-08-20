@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "winr",
-    "slug": "winr",
+    "name": "winr-uv3ph42etr0i5joxzuhxn",
+    "slug": "winr-uv3ph42etr0i5joxzuhxn",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -13,15 +13,14 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.khaledsakr.winr"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.khaledsakr.winr"
+      "package": "com.khaledsakr.winruv3ph42etr0i5joxzuhxn"
     },
     "web": {
       "bundler": "metro",
@@ -39,7 +38,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "f005d04c-0d8f-4bc7-9365-c22f8c95d220"
+        "projectId": "9b2b2485-bb53-40de-a957-935118d61d41"
       }
     },
     "owner": "khaled-sakr"
