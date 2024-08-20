@@ -5,7 +5,7 @@ WinR is an e-commerce mobile application built with React Native and Expo. It le
 ## Project Documentation
 - [Apk App](https://t-empire.netlify.app): the demo project in netlify 
 - [Github](https://github.com/khaled-sakr/WinR): let's see the code.
-- [G.Drive](https://drive.google.com/file/d/1Yp_Fhzwm4ZlFJ1GFDruO31lzx6uDdstZ/view?usp=sharing): && continue:(https://drive.google.com/file/d/1xoithqlONg9hqwdXfGaXio090cDTJcqg/view?usp=sharing) let's see the video for app.
+- [G.Drive](https://drive.google.com/file/d/1xoithqlONg9hqwdXfGaXio090cDTJcqg/view?usp=sharing) && continue:((https://drive.google.com/file/d/1Yp_Fhzwm4ZlFJ1GFDruO31lzx6uDdstZ/view?usp=sharing)) let's see the video for app.
 
 
 ## Features
