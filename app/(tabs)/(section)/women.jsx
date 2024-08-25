@@ -52,7 +52,6 @@ const Women = () => {
       fetchData();
     }, [])
   );
-  console.log(womenProducts?.map((item) => item.id));
   return (
     <SafeAreaView>
       <ScrollView>

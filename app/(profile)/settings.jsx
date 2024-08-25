@@ -33,7 +33,6 @@ const Settings = () => {
   const [pressedAnimated, setPressedAnimated] = useState(false);
   const [notification, setNotfication] = useState();
   const AuthList = AsyncStorage.getItem("AuthList");
-  console.log(AuthList);
 
   async function signOut() {
     setIsLoading(true);

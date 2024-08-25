@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "WinR",
-    "slug": "winr-app",
+    "slug": "winr-qz-nsadkzebv4njamurc",
     "scheme": "WinR",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,7 +14,8 @@
     },
     "ios": {
       "supportsTablet": true,
-      "package": "com.khaledSakr.WinR"
+      "package": "com.khaledSakr.WinR",
+      "bundleIdentifier": "com.khaledSakr.WinR"
     },
     "android": {
       "adaptiveIcon": {
@@ -40,7 +41,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "077b3cec-f459-4f45-b19d-841d03ce14cc"
+        "projectId": "250d75b7-2c36-4783-99e5-f50febc849b0"
       }
     },
     "owner": "khaled-sakr"

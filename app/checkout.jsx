@@ -118,7 +118,7 @@ const Checkout = () => {
           payment: paymentCard ? "credit card" : "cash money",
         });
       });
-
+      startAnimation();
       setIsLoadingClick(true);
       setTimeout(() => {
         cart.map((item) => {
@@ -145,7 +145,7 @@ const Checkout = () => {
           activeOpacity={0.9}
           onPress={() => {
             if (isLoading || isLoadingClick) return null;
-            startAnimation();
+
             insertOrderFun();
           }}
           className={`w-11/12 mx-auto shadow-2xl h-full bg-secondary font-semibold rounded-lg flex justify-center ${

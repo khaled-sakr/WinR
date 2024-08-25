@@ -47,6 +47,7 @@ const Favourite = () => {
                   rerender={rerender}
                   setRerender={setRerender}
                   key={item.id}
+                  blur={item.name.includes("girl") ? 10 : 0}
                   favourite
                   favData={item}
                 />
