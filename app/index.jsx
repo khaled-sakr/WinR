@@ -1,12 +1,4 @@
-import {
-  View,
-  Image,
-  ImageBackground,
-  ActivityIndicator,
-  Text,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import { View, Image, ImageBackground, ActivityIndicator } from "react-native";
 import React, { useEffect } from "react";
 import { images } from "../constants";
 import { router } from "expo-router";
